@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "974567648171",
+    "firebase_url": "https://glint-firebase-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "glint-firebase",
+    "storage_bucket": "glint-firebase.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974567648171:android:9a0baf4cbabc6bae8e80ee",
+        "android_client_info": {
+          "package_name": "com.mycompany.glint"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj9WBi4faL2Gm4HgHDuQx51rcaU45mu5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
