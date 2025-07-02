@@ -20,10 +20,10 @@ class ProjectPermissionsRecord extends FirestoreRecord {
   String get id => _id ?? '';
   bool hasId() => _id != null;
 
-  // "projct_id" field.
-  DocumentReference? _projctId;
-  DocumentReference? get projctId => _projctId;
-  bool hasProjctId() => _projctId != null;
+  // "project_id" field.
+  DocumentReference? _projectId;
+  DocumentReference? get projectId => _projectId;
+  bool hasProjectId() => _projectId != null;
 
   // "user_id" field.
   DocumentReference? _userId;
@@ -52,7 +52,7 @@ class ProjectPermissionsRecord extends FirestoreRecord {
 
   void _initializeFields() {
     _id = snapshotData['id'] as String?;
-    _projctId = snapshotData['projct_id'] as DocumentReference?;
+    _projectId = snapshotData['project_id'] as DocumentReference?;
     _userId = snapshotData['user_id'] as DocumentReference?;
     _roleInProject = snapshotData['role_in_project'] as String?;
     _canAllocate = snapshotData['can_allocate'] as bool?;
@@ -97,7 +97,7 @@ class ProjectPermissionsRecord extends FirestoreRecord {
 
 Map<String, dynamic> createProjectPermissionsRecordData({
   String? id,
-  DocumentReference? projctId,
+  DocumentReference? projectId,
   DocumentReference? userId,
   String? roleInProject,
   bool? canAllocate,
@@ -107,7 +107,7 @@ Map<String, dynamic> createProjectPermissionsRecordData({
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'id': id,
-      'projct_id': projctId,
+      'project_id': projectId,
       'user_id': userId,
       'role_in_project': roleInProject,
       'can_allocate': canAllocate,
@@ -126,7 +126,7 @@ class ProjectPermissionsRecordDocumentEquality
   @override
   bool equals(ProjectPermissionsRecord? e1, ProjectPermissionsRecord? e2) {
     return e1?.id == e2?.id &&
-        e1?.projctId == e2?.projctId &&
+        e1?.projectId == e2?.projectId &&
         e1?.userId == e2?.userId &&
         e1?.roleInProject == e2?.roleInProject &&
         e1?.canAllocate == e2?.canAllocate &&
@@ -137,7 +137,7 @@ class ProjectPermissionsRecordDocumentEquality
   @override
   int hash(ProjectPermissionsRecord? e) => const ListEquality().hash([
         e?.id,
-        e?.projctId,
+        e?.projectId,
         e?.userId,
         e?.roleInProject,
         e?.canAllocate,

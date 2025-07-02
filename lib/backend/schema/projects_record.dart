@@ -40,12 +40,18 @@ class ProjectsRecord extends FirestoreRecord {
   DateTime? get createdDate => _createdDate;
   bool hasCreatedDate() => _createdDate != null;
 
+  // "calendar_id" field.
+  DocumentReference? _calendarId;
+  DocumentReference? get calendarId => _calendarId;
+  bool hasCalendarId() => _calendarId != null;
+
   void _initializeFields() {
     _id = snapshotData['id'] as String?;
     _name = snapshotData['name'] as String?;
     _color = snapshotData['color'] as String?;
     _createdBy = snapshotData['created_by'] as DocumentReference?;
     _createdDate = snapshotData['created_date'] as DateTime?;
+    _calendarId = snapshotData['calendar_id'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -88,6 +94,7 @@ Map<String, dynamic> createProjectsRecordData({
   String? color,
   DocumentReference? createdBy,
   DateTime? createdDate,
+  DocumentReference? calendarId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -96,6 +103,7 @@ Map<String, dynamic> createProjectsRecordData({
       'color': color,
       'created_by': createdBy,
       'created_date': createdDate,
+      'calendar_id': calendarId,
     }.withoutNulls,
   );
 
@@ -111,12 +119,13 @@ class ProjectsRecordDocumentEquality implements Equality<ProjectsRecord> {
         e1?.name == e2?.name &&
         e1?.color == e2?.color &&
         e1?.createdBy == e2?.createdBy &&
-        e1?.createdDate == e2?.createdDate;
+        e1?.createdDate == e2?.createdDate &&
+        e1?.calendarId == e2?.calendarId;
   }
 
   @override
-  int hash(ProjectsRecord? e) => const ListEquality()
-      .hash([e?.id, e?.name, e?.color, e?.createdBy, e?.createdDate]);
+  int hash(ProjectsRecord? e) => const ListEquality().hash(
+      [e?.id, e?.name, e?.color, e?.createdBy, e?.createdDate, e?.calendarId]);
 
   @override
   bool isValidKey(Object? o) => o is ProjectsRecord;

@@ -51,6 +51,11 @@ class UsersRecord extends FirestoreRecord {
   Role? get role => _role;
   bool hasRole() => _role != null;
 
+  // "calendar_id" field.
+  DocumentReference? _calendarId;
+  DocumentReference? get calendarId => _calendarId;
+  bool hasCalendarId() => _calendarId != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -61,6 +66,7 @@ class UsersRecord extends FirestoreRecord {
     _role = snapshotData['role'] is Role
         ? snapshotData['role']
         : deserializeEnum<Role>(snapshotData['role']);
+    _calendarId = snapshotData['calendar_id'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -104,6 +110,7 @@ Map<String, dynamic> createUsersRecordData({
   DateTime? createdTime,
   String? phoneNumber,
   Role? role,
+  DocumentReference? calendarId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -114,6 +121,7 @@ Map<String, dynamic> createUsersRecordData({
       'created_time': createdTime,
       'phone_number': phoneNumber,
       'role': role,
+      'calendar_id': calendarId,
     }.withoutNulls,
   );
 
@@ -131,7 +139,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        e1?.role == e2?.role;
+        e1?.role == e2?.role &&
+        e1?.calendarId == e2?.calendarId;
   }
 
   @override
@@ -142,7 +151,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.uid,
         e?.createdTime,
         e?.phoneNumber,
-        e?.role
+        e?.role,
+        e?.calendarId
       ]);
 
   @override

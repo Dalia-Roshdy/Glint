@@ -1,8 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'b_create_team_widget.dart' show BCreateTeamWidget;
+import 'd_add_project_screen23_widget.dart' show DAddProjectScreen23Widget;
 import 'package:flutter/material.dart';
 
-class BCreateTeamModel extends FlutterFlowModel<BCreateTeamWidget> {
+class DAddProjectScreen23Model
+    extends FlutterFlowModel<DAddProjectScreen23Widget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();

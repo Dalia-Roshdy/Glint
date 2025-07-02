@@ -1,10 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'b_create_team_model.dart';
-export 'b_create_team_model.dart';
+import 'b_create_project_model.dart';
+export 'b_create_project_model.dart';
 
 /// Design a Team Name input screen as part of the onboarding wizard.
 ///
@@ -19,28 +22,28 @@ export 'b_create_team_model.dart';
 /// Web-first: center card, illustration on right (optional)
 ///
 /// Mobile: center card, full width, illustration hidden
-class BCreateTeamWidget extends StatefulWidget {
-  const BCreateTeamWidget({super.key});
+class BCreateProjectWidget extends StatefulWidget {
+  const BCreateProjectWidget({super.key});
 
-  static String routeName = 'B-Create_Team';
-  static String routePath = '/bCreateTeam';
+  static String routeName = 'B-Create_project';
+  static String routePath = '/bCreateProject';
 
   @override
-  State<BCreateTeamWidget> createState() => _BCreateTeamWidgetState();
+  State<BCreateProjectWidget> createState() => _BCreateProjectWidgetState();
 }
 
-class _BCreateTeamWidgetState extends State<BCreateTeamWidget> {
-  late BCreateTeamModel _model;
+class _BCreateProjectWidgetState extends State<BCreateProjectWidget> {
+  late BCreateProjectModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BCreateTeamModel());
+    _model = createModel(context, () => BCreateProjectModel());
 
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
+    _model.projectNameTextController ??= TextEditingController();
+    _model.projectNameFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -71,7 +74,7 @@ class _BCreateTeamWidgetState extends State<BCreateTeamWidget> {
                 child: Align(
                   alignment: AlignmentDirectional(1.0, 0.0),
                   child: Image.asset(
-                    'assets/images/undraw_filter_v54h.png',
+                    'assets/images/edited_people_02.png',
                     width: 881.0,
                     height: 814.72,
                     fit: BoxFit.fitHeight,
@@ -112,7 +115,7 @@ class _BCreateTeamWidgetState extends State<BCreateTeamWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 8.0),
                                 child: Text(
-                                  'Pick a name for your team',
+                                  'Pick a name for your project',
                                   textAlign: TextAlign.center,
                                   style: FlutterFlowTheme.of(context)
                                       .headlineMedium
@@ -175,13 +178,14 @@ class _BCreateTeamWidgetState extends State<BCreateTeamWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     TextFormField(
-                                      controller: _model.textController,
-                                      focusNode: _model.textFieldFocusNode,
+                                      controller:
+                                          _model.projectNameTextController,
+                                      focusNode: _model.projectNameFocusNode,
                                       autofocus: true,
                                       textInputAction: TextInputAction.done,
                                       obscureText: false,
                                       decoration: InputDecoration(
-                                        hintText: 'E.g., Razor Agency',
+                                        hintText: 'Glint',
                                         hintStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -269,16 +273,125 @@ class _BCreateTeamWidgetState extends State<BCreateTeamWidget> {
                                           ),
                                       cursorColor:
                                           FlutterFlowTheme.of(context).primary,
-                                      validator: _model.textControllerValidator
+                                      validator: _model
+                                          .projectNameTextControllerValidator
                                           .asValidator(context),
                                     ),
+                                    if (_model.errorMS != null &&
+                                        _model.errorMS != '')
+                                      Padding(
+                                        padding: EdgeInsets.all(10.0),
+                                        child: Container(
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                          child: Text(
+                                            valueOrDefault<String>(
+                                              _model.errorMS,
+                                              'error',
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.inter(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .error,
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           0.0, 24.0, 0.0, 0.0),
                                       child: FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
-                                        },
+                                        onPressed: (_model.projectNameTextController
+                                                        .text ==
+                                                    '')
+                                            ? null
+                                            : () async {
+                                                _model.form = true;
+                                                if (_model.formKey
+                                                            .currentState ==
+                                                        null ||
+                                                    !_model
+                                                        .formKey.currentState!
+                                                        .validate()) {
+                                                  _model.form = false;
+                                                }
+                                                if (_model.form!) {
+                                                  _model.count =
+                                                      await queryProjectsRecordCount(
+                                                    queryBuilder:
+                                                        (projectsRecord) =>
+                                                            projectsRecord
+                                                                .where(
+                                                      'name',
+                                                      isEqualTo: _model
+                                                          .projectNameTextController
+                                                          .text,
+                                                    ),
+                                                  );
+                                                  if (_model.count == 0) {
+                                                    _model.errorMS = null;
+                                                    safeSetState(() {});
+
+                                                    await ProjectsRecord
+                                                        .collection
+                                                        .doc()
+                                                        .set({
+                                                      ...createProjectsRecordData(
+                                                        name: _model
+                                                            .projectNameTextController
+                                                            .text,
+                                                        createdBy:
+                                                            currentUserReference,
+                                                      ),
+                                                      ...mapToFirestore(
+                                                        {
+                                                          'created_date': FieldValue
+                                                              .serverTimestamp(),
+                                                        },
+                                                      ),
+                                                    });
+
+                                                    context.goNamed(
+                                                        CAddTeamMembersWidget
+                                                            .routeName);
+                                                  } else {
+                                                    _model.errorMS =
+                                                        'This Project already exists.';
+                                                    safeSetState(() {});
+                                                  }
+                                                }
+
+                                                safeSetState(() {});
+                                              },
                                         text: 'Continue',
                                         options: FFButtonOptions(
                                           width: double.infinity,
@@ -305,7 +418,9 @@ class _BCreateTeamWidgetState extends State<BCreateTeamWidget> {
                                                           .titleMedium
                                                           .fontStyle,
                                                 ),
-                                                color: Colors.white,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
                                                 letterSpacing: 0.0,
                                                 fontWeight:
                                                     FlutterFlowTheme.of(context)
@@ -323,6 +438,8 @@ class _BCreateTeamWidgetState extends State<BCreateTeamWidget> {
                                           ),
                                           borderRadius:
                                               BorderRadius.circular(8.0),
+                                          disabledColor: Color(0xFFF8F7F9),
+                                          disabledTextColor: Color(0xFFA6B3C7),
                                         ),
                                       ),
                                     ),

@@ -78,14 +78,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? BCreateTeamWidget() : ASignInUPWidget(),
+          appStateNotifier.loggedIn ? ASignInUPWidget() : ASignInUPWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? BCreateTeamWidget()
-              : ASignInUPWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? ASignInUPWidget() : ASignInUPWidget(),
         ),
         FFRoute(
           name: ASignInUPWidget.routeName,
@@ -93,9 +92,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ASignInUPWidget(),
         ),
         FFRoute(
-          name: BCreateTeamWidget.routeName,
-          path: BCreateTeamWidget.routePath,
-          builder: (context, params) => BCreateTeamWidget(),
+          name: BCreateProjectWidget.routeName,
+          path: BCreateProjectWidget.routePath,
+          builder: (context, params) => BCreateProjectWidget(),
         ),
         FFRoute(
           name: CalviewWidget.routeName,
@@ -108,9 +107,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CalWidget(),
         ),
         FFRoute(
-          name: CTeamSetupWidget.routeName,
-          path: CTeamSetupWidget.routePath,
-          builder: (context, params) => CTeamSetupWidget(),
+          name: CTeamSetup13Widget.routeName,
+          path: CTeamSetup13Widget.routePath,
+          builder: (context, params) => CTeamSetup13Widget(),
         ),
         FFRoute(
           name: DAddProjectScreenDraftWidget.routeName,
@@ -123,9 +122,64 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => AddPeopleScreenWidget(),
         ),
         FFRoute(
-          name: DAddProjectScreenWidget.routeName,
-          path: DAddProjectScreenWidget.routePath,
-          builder: (context, params) => DAddProjectScreenWidget(),
+          name: DAddProjectScreen23Widget.routeName,
+          path: DAddProjectScreen23Widget.routePath,
+          builder: (context, params) => DAddProjectScreen23Widget(),
+        ),
+        FFRoute(
+          name: TeammembersWidget.routeName,
+          path: TeammembersWidget.routePath,
+          builder: (context, params) => TeammembersWidget(),
+        ),
+        FFRoute(
+          name: CAddTeamMembersWidget.routeName,
+          path: CAddTeamMembersWidget.routePath,
+          builder: (context, params) => CAddTeamMembersWidget(),
+        ),
+        FFRoute(
+          name: PeopleManagementWidget.routeName,
+          path: PeopleManagementWidget.routePath,
+          builder: (context, params) => PeopleManagementWidget(),
+        ),
+        FFRoute(
+          name: AddPeopleScreenCopyWidget.routeName,
+          path: AddPeopleScreenCopyWidget.routePath,
+          builder: (context, params) => AddPeopleScreenCopyWidget(),
+        ),
+        FFRoute(
+          name: DPeopleManagementDashboardWidget.routeName,
+          path: DPeopleManagementDashboardWidget.routePath,
+          builder: (context, params) => DPeopleManagementDashboardWidget(),
+        ),
+        FFRoute(
+          name: Tableentry4Widget.routeName,
+          path: Tableentry4Widget.routePath,
+          builder: (context, params) => Tableentry4Widget(),
+        ),
+        FFRoute(
+          name: EProjectManagementWidget.routeName,
+          path: EProjectManagementWidget.routePath,
+          builder: (context, params) => EProjectManagementWidget(),
+        ),
+        FFRoute(
+          name: CalendarSettings01Widget.routeName,
+          path: CalendarSettings01Widget.routePath,
+          builder: (context, params) => CalendarSettings01Widget(),
+        ),
+        FFRoute(
+          name: FScheduleWidget.routeName,
+          path: FScheduleWidget.routePath,
+          builder: (context, params) => FScheduleWidget(),
+        ),
+        FFRoute(
+          name: Claneder02Widget.routeName,
+          path: Claneder02Widget.routePath,
+          builder: (context, params) => Claneder02Widget(),
+        ),
+        FFRoute(
+          name: Claneder02CopyWidget.routeName,
+          path: Claneder02CopyWidget.routePath,
+          builder: (context, params) => Claneder02CopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

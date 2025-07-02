@@ -6,8 +6,8 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'c_team_setup_model.dart';
-export 'c_team_setup_model.dart';
+import 'c_team_setup13_model.dart';
+export 'c_team_setup13_model.dart';
 
 /// Build a Team Setup screen for onboarding.
 ///
@@ -27,25 +27,25 @@ export 'c_team_setup_model.dart';
 /// Web-first: wide form, side-by-side groups where space allows
 ///
 /// Mobile: stack all fields vertically
-class CTeamSetupWidget extends StatefulWidget {
-  const CTeamSetupWidget({super.key});
+class CTeamSetup13Widget extends StatefulWidget {
+  const CTeamSetup13Widget({super.key});
 
-  static String routeName = 'C-Team_setup';
-  static String routePath = '/cTeamSetup';
+  static String routeName = 'C-Team_setup1_3';
+  static String routePath = '/cTeamSetup13';
 
   @override
-  State<CTeamSetupWidget> createState() => _CTeamSetupWidgetState();
+  State<CTeamSetup13Widget> createState() => _CTeamSetup13WidgetState();
 }
 
-class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
-  late CTeamSetupModel _model;
+class _CTeamSetup13WidgetState extends State<CTeamSetup13Widget> {
+  late CTeamSetup13Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CTeamSetupModel());
+    _model = createModel(context, () => CTeamSetup13Model());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -66,12 +66,11 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFFF6F6F6),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: Color(0xFFF6F6F6),
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderColor: Color(0xFFE0E3E7),
             borderRadius: 22.0,
             borderWidth: 1.0,
             buttonSize: 44.0,
@@ -98,61 +97,138 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
                 maxWidth: 800.0,
               ),
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(48.0, 0.0, 24.0, 0.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Your team\'s needs',
-                            style: FlutterFlowTheme.of(context)
-                                .displaySmall
-                                .override(
-                                  font: GoogleFonts.readexPro(
+                      Align(
+                        alignment: AlignmentDirectional(0.0, -1.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              '1/3',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                            ),
+                            Align(
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 0.0, 0.0, 0.0),
+                                child: Container(
+                                  width: 67.8,
+                                  height: 23.9,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    borderRadius: BorderRadius.circular(4.0),
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Text(
+                                      'Sign up',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.inter(
+                                              fontWeight: FontWeight.w500,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Your team\'s needs',
+                              style: FlutterFlowTheme.of(context)
+                                  .displaySmall
+                                  .override(
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .displaySmall
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xFF12151C),
+                                    fontSize: 32.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .displaySmall
                                         .fontStyle,
                                   ),
-                                  color: Color(0xFF12151C),
-                                  fontSize: 32.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .displaySmall
-                                      .fontStyle,
-                                ),
-                          ),
-                          Text(
-                            'Help us customize Glint for your team\'s specific requirements',
-                            style:
-                                FlutterFlowTheme.of(context).bodyLarge.override(
-                                      font: GoogleFonts.inter(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyLarge
-                                            .fontStyle,
-                                      ),
-                                      color: Color(0xFF5A5C60),
-                                      fontSize: 16.0,
-                                      letterSpacing: 0.0,
+                            ),
+                            Text(
+                              'Help us customize Glint for your team\'s specific requirements',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    font: GoogleFonts.inter(
                                       fontWeight: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .fontWeight,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .bodyLarge
                                           .fontStyle,
-                                      lineHeight: 1.4,
                                     ),
-                          ),
-                        ].divide(SizedBox(height: 8.0)),
+                                    color: Color(0xFF5A5C60),
+                                    fontSize: 16.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .fontStyle,
+                                    lineHeight: 1.4,
+                                  ),
+                            ),
+                          ]
+                              .divide(SizedBox(height: 8.0))
+                              .addToStart(SizedBox(height: 2.0)),
+                        ),
                       ),
                       Column(
                         mainAxisSize: MainAxisSize.max,
@@ -330,98 +406,6 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    height: 44.0,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFF6F6F6),
-                                      borderRadius: BorderRadius.circular(22.0),
-                                      border: Border.all(
-                                        color: Color(0xFFE0E3E7),
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 12.0, 24.0, 12.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            '101-500',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF5A5C60),
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 44.0,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFF6F6F6),
-                                      borderRadius: BorderRadius.circular(22.0),
-                                      border: Border.all(
-                                        color: Color(0xFFE0E3E7),
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 12.0, 24.0, 12.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            '500+',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Color(0xFF5A5C60),
-                                                  fontSize: 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
-                                                ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
                                 ],
                               ),
                             ].divide(SizedBox(height: 16.0)),
@@ -441,7 +425,8 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
                                             .titleMedium
                                             .fontStyle,
                                       ),
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -617,7 +602,8 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
                                             .titleMedium
                                             .fontStyle,
                                       ),
-                                      color: Colors.white,
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryText,
                                       fontSize: 18.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
@@ -650,7 +636,8 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                      color: Color(0xFF12151C),
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
                                       fontSize: 16.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
@@ -658,7 +645,7 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
                                           .bodyMedium
                                           .fontStyle,
                                     ),
-                                hintText: 'Select an option',
+                                hintText: '    Select an option',
                                 icon: Icon(
                                   Icons.keyboard_arrow_down_rounded,
                                   color: Color(0xFF5A5C60),
@@ -680,26 +667,32 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
                           ),
                         ].divide(SizedBox(height: 40.0)),
                       ),
-                      FFButtonWidget(
-                        onPressed: () {
-                          print('Button pressed ...');
-                        },
-                        text: 'Next',
-                        icon: Icon(
-                          Icons.arrow_forward,
-                          size: 15.0,
-                        ),
-                        options: FFButtonOptions(
-                          width: 110.0,
-                          height: 52.0,
+                      Align(
+                        alignment: AlignmentDirectional(-1.0, -1.0),
+                        child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              32.0, 0.0, 32.0, 0.0),
-                          iconAlignment: IconAlignment.end,
-                          iconPadding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: Color(0xFF105DFB),
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleMedium.override(
+                              0.0, 28.0, 0.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () {
+                              print('Button pressed ...');
+                            },
+                            text: 'Next',
+                            icon: Icon(
+                              Icons.arrow_forward,
+                              size: 15.0,
+                            ),
+                            options: FFButtonOptions(
+                              width: 100.0,
+                              height: 45.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 0.0, 12.0, 0.0),
+                              iconAlignment: IconAlignment.end,
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Color(0xFF105DFB),
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .titleMedium
+                                  .override(
                                     font: GoogleFonts.readexPro(
                                       fontWeight: FontWeight.w600,
                                       fontStyle: FlutterFlowTheme.of(context)
@@ -707,24 +700,26 @@ class _CTeamSetupWidgetState extends State<CTeamSetupWidget> {
                                           .fontStyle,
                                     ),
                                     color: Colors.white,
-                                    fontSize: 18.0,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .fontStyle,
                                   ),
-                          elevation: 0.0,
-                          borderSide: BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
+                              elevation: 0.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(12.0),
                         ),
                       ),
                     ]
                         .divide(SizedBox(height: 32.0))
-                        .addToStart(SizedBox(height: 40.0))
+                        .addToStart(SizedBox(height: 12.0))
                         .addToEnd(SizedBox(height: 40.0)),
                   ),
                 ),
