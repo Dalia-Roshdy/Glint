@@ -77,14 +77,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? ASignInUPWidget() : ASignInUPWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? CalendarSettingsFormScreen05Widget()
+          : ASignInUPWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? ASignInUPWidget() : ASignInUPWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? CalendarSettingsFormScreen05Widget()
+              : ASignInUPWidget(),
         ),
         FFRoute(
           name: ASignInUPWidget.routeName,
@@ -180,6 +182,107 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: Claneder02CopyWidget.routeName,
           path: Claneder02CopyWidget.routePath,
           builder: (context, params) => Claneder02CopyWidget(),
+        ),
+        FFRoute(
+          name: CalendarSettings02CopyWidget.routeName,
+          path: CalendarSettings02CopyWidget.routePath,
+          builder: (context, params) => CalendarSettings02CopyWidget(),
+        ),
+        FFRoute(
+          name: CalendarSettings04Widget.routeName,
+          path: CalendarSettings04Widget.routePath,
+          builder: (context, params) => CalendarSettings04Widget(),
+        ),
+        FFRoute(
+          name: CalendarSettingsFormScreen01Widget.routeName,
+          path: CalendarSettingsFormScreen01Widget.routePath,
+          builder: (context, params) => CalendarSettingsFormScreen01Widget(),
+        ),
+        FFRoute(
+          name: CalendarSettingsFormScreen02Widget.routeName,
+          path: CalendarSettingsFormScreen02Widget.routePath,
+          builder: (context, params) => CalendarSettingsFormScreen02Widget(),
+        ),
+        FFRoute(
+          name: CalendarSettingsFormScreen03Widget.routeName,
+          path: CalendarSettingsFormScreen03Widget.routePath,
+          builder: (context, params) => CalendarSettingsFormScreen03Widget(),
+        ),
+        FFRoute(
+          name: CalendarSettingsFormScreen04Widget.routeName,
+          path: CalendarSettingsFormScreen04Widget.routePath,
+          builder: (context, params) => CalendarSettingsFormScreen04Widget(),
+        ),
+        FFRoute(
+          name: CalendarSettingsFormScreen05Widget.routeName,
+          path: CalendarSettingsFormScreen05Widget.routePath,
+          requireAuth: true,
+          builder: (context, params) => CalendarSettingsFormScreen05Widget(),
+        ),
+        FFRoute(
+          name: CalendarSettingsFormScreen06Widget.routeName,
+          path: CalendarSettingsFormScreen06Widget.routePath,
+          builder: (context, params) => CalendarSettingsFormScreen06Widget(),
+        ),
+        FFRoute(
+          name: CalendarSettingsFormScreen07Widget.routeName,
+          path: CalendarSettingsFormScreen07Widget.routePath,
+          builder: (context, params) => CalendarSettingsFormScreen07Widget(),
+        ),
+        FFRoute(
+          name: GCalenderALLOCATIONWidget.routeName,
+          path: GCalenderALLOCATIONWidget.routePath,
+          builder: (context, params) => GCalenderALLOCATIONWidget(),
+        ),
+        FFRoute(
+          name: Clender05Widget.routeName,
+          path: Clender05Widget.routePath,
+          builder: (context, params) => Clender05Widget(),
+        ),
+        FFRoute(
+          name: GCalenderALLOCATIONCopyWidget.routeName,
+          path: GCalenderALLOCATIONCopyWidget.routePath,
+          builder: (context, params) => GCalenderALLOCATIONCopyWidget(),
+        ),
+        FFRoute(
+          name: H01Widget.routeName,
+          path: H01Widget.routePath,
+          builder: (context, params) => H01Widget(),
+        ),
+        FFRoute(
+          name: ReportWidget.routeName,
+          path: ReportWidget.routePath,
+          builder: (context, params) => ReportWidget(),
+        ),
+        FFRoute(
+          name: Page4Widget.routeName,
+          path: Page4Widget.routePath,
+          builder: (context, params) => Page4Widget(),
+        ),
+        FFRoute(
+          name: TaskManagement2Widget.routeName,
+          path: TaskManagement2Widget.routePath,
+          builder: (context, params) => TaskManagement2Widget(),
+        ),
+        FFRoute(
+          name: Ccc02Widget.routeName,
+          path: Ccc02Widget.routePath,
+          builder: (context, params) => Ccc02Widget(),
+        ),
+        FFRoute(
+          name: Ccc03Widget.routeName,
+          path: Ccc03Widget.routePath,
+          builder: (context, params) => Ccc03Widget(),
+        ),
+        FFRoute(
+          name: Ccc04Widget.routeName,
+          path: Ccc04Widget.routePath,
+          builder: (context, params) => Ccc04Widget(),
+        ),
+        FFRoute(
+          name: Ccc05Widget.routeName,
+          path: Ccc05Widget.routePath,
+          builder: (context, params) => Ccc05Widget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

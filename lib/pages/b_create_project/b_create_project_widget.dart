@@ -381,7 +381,7 @@ class _BCreateProjectWidgetState extends State<BCreateProjectWidget> {
                                                     });
 
                                                     context.goNamed(
-                                                        CAddTeamMembersWidget
+                                                        DPeopleManagementDashboardWidget
                                                             .routeName);
                                                   } else {
                                                     _model.errorMS =

@@ -45,6 +45,16 @@ class ProjectsRecord extends FirestoreRecord {
   DocumentReference? get calendarId => _calendarId;
   bool hasCalendarId() => _calendarId != null;
 
+  // "Active" field.
+  bool? _active;
+  bool get active => _active ?? false;
+  bool hasActive() => _active != null;
+
+  // "Client" field.
+  String? _client;
+  String get client => _client ?? '';
+  bool hasClient() => _client != null;
+
   void _initializeFields() {
     _id = snapshotData['id'] as String?;
     _name = snapshotData['name'] as String?;
@@ -52,6 +62,8 @@ class ProjectsRecord extends FirestoreRecord {
     _createdBy = snapshotData['created_by'] as DocumentReference?;
     _createdDate = snapshotData['created_date'] as DateTime?;
     _calendarId = snapshotData['calendar_id'] as DocumentReference?;
+    _active = snapshotData['Active'] as bool?;
+    _client = snapshotData['Client'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -95,6 +107,8 @@ Map<String, dynamic> createProjectsRecordData({
   DocumentReference? createdBy,
   DateTime? createdDate,
   DocumentReference? calendarId,
+  bool? active,
+  String? client,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -104,6 +118,8 @@ Map<String, dynamic> createProjectsRecordData({
       'created_by': createdBy,
       'created_date': createdDate,
       'calendar_id': calendarId,
+      'Active': active,
+      'Client': client,
     }.withoutNulls,
   );
 
@@ -120,12 +136,22 @@ class ProjectsRecordDocumentEquality implements Equality<ProjectsRecord> {
         e1?.color == e2?.color &&
         e1?.createdBy == e2?.createdBy &&
         e1?.createdDate == e2?.createdDate &&
-        e1?.calendarId == e2?.calendarId;
+        e1?.calendarId == e2?.calendarId &&
+        e1?.active == e2?.active &&
+        e1?.client == e2?.client;
   }
 
   @override
-  int hash(ProjectsRecord? e) => const ListEquality().hash(
-      [e?.id, e?.name, e?.color, e?.createdBy, e?.createdDate, e?.calendarId]);
+  int hash(ProjectsRecord? e) => const ListEquality().hash([
+        e?.id,
+        e?.name,
+        e?.color,
+        e?.createdBy,
+        e?.createdDate,
+        e?.calendarId,
+        e?.active,
+        e?.client
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ProjectsRecord;

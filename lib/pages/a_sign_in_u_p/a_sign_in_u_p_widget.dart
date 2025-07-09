@@ -966,7 +966,7 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                               });
 
                                                               context.goNamedAuth(
-                                                                  BCreateProjectWidget
+                                                                  CalendarSettingsFormScreen05Widget
                                                                       .routeName,
                                                                   context
                                                                       .mounted);
@@ -1152,7 +1152,7 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                                 }
 
                                                                 context.goNamedAuth(
-                                                                    ASignInUPWidget
+                                                                    CalendarSettingsFormScreen05Widget
                                                                         .routeName,
                                                                     context
                                                                         .mounted);
@@ -1250,7 +1250,7 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                                       }
 
                                                                       context.goNamedAuth(
-                                                                          ASignInUPWidget
+                                                                          CalendarSettingsFormScreen05Widget
                                                                               .routeName,
                                                                           context
                                                                               .mounted);
@@ -1869,12 +1869,21 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                                     .passwordTextController
                                                                     ?.clear();
                                                               });
-
-                                                              context.goNamedAuth(
-                                                                  BCreateProjectWidget
-                                                                      .routeName,
-                                                                  context
-                                                                      .mounted);
+                                                              if (currentUserDocument
+                                                                      ?.calendarId !=
+                                                                  null) {
+                                                                context.goNamedAuth(
+                                                                    EProjectManagementWidget
+                                                                        .routeName,
+                                                                    context
+                                                                        .mounted);
+                                                              } else {
+                                                                context.goNamedAuth(
+                                                                    CalendarSettingsFormScreen05Widget
+                                                                        .routeName,
+                                                                    context
+                                                                        .mounted);
+                                                              }
                                                             } else {
                                                               _model.errorMS =
                                                                   'Form not Valid';
@@ -2032,7 +2041,7 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                           }
 
                                                           context.goNamedAuth(
-                                                              ASignInUPWidget
+                                                              CalendarSettingsFormScreen05Widget
                                                                   .routeName,
                                                               context.mounted);
                                                         },
@@ -2135,7 +2144,7 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                                 }
 
                                                                 context.goNamedAuth(
-                                                                    ASignInUPWidget
+                                                                    CalendarSettingsFormScreen05Widget
                                                                         .routeName,
                                                                     context
                                                                         .mounted);
@@ -2231,7 +2240,7 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                       }
 
                                                       context.goNamedAuth(
-                                                          ASignInUPWidget
+                                                          CalendarSettingsFormScreen05Widget
                                                               .routeName,
                                                           context.mounted);
                                                     },

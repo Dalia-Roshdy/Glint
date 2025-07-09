@@ -12,6 +12,16 @@ enum CalendarType {
   Resource,
 }
 
+enum Days {
+  Sat,
+  Sun,
+  Mon,
+  Tue,
+  Wed,
+  Thu,
+  Fri,
+}
+
 extension FFEnumExtensions<T extends Enum> on T {
   String serialize() => name;
 }
@@ -27,6 +37,8 @@ T? deserializeEnum<T>(String? value) {
       return Role.values.deserialize(value) as T?;
     case (CalendarType):
       return CalendarType.values.deserialize(value) as T?;
+    case (Days):
+      return Days.values.deserialize(value) as T?;
     default:
       return null;
   }

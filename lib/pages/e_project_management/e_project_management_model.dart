@@ -1,5 +1,7 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'e_project_management_widget.dart' show EProjectManagementWidget;
 import 'package:flutter/material.dart';
 
@@ -10,12 +12,13 @@ class EProjectManagementModel
   // State field(s) for Checkbox widget.
   bool? checkboxValue1;
   // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController = FlutterFlowDataTableController<String>();
+  final paginatedDataTableController =
+      FlutterFlowDataTableController<ProjectsRecord>();
   // State field(s) for Checkbox widget.
   bool? checkboxValue2;
   // State field(s) for Checkbox widget.
-  Map<String, bool> checkboxValueMap3 = {};
-  List<String> get checkboxCheckedItems3 => checkboxValueMap3.entries
+  Map<ProjectsRecord, bool> checkboxValueMap3 = {};
+  List<ProjectsRecord> get checkboxCheckedItems3 => checkboxValueMap3.entries
       .where((e) => e.value)
       .map((e) => e.key)
       .toList();

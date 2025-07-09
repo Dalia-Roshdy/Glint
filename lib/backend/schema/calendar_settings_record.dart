@@ -16,11 +16,6 @@ class CalendarSettingsRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  bool hasId() => _id != null;
-
   // "type" field.
   CalendarType? _type;
   CalendarType? get type => _type;
@@ -57,7 +52,6 @@ class CalendarSettingsRecord extends FirestoreRecord {
   bool hasUpdatedDate() => _updatedDate != null;
 
   void _initializeFields() {
-    _id = snapshotData['id'] as String?;
     _type = snapshotData['type'] is CalendarType
         ? snapshotData['type']
         : deserializeEnum<CalendarType>(snapshotData['type']);
@@ -108,7 +102,6 @@ class CalendarSettingsRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createCalendarSettingsRecordData({
-  String? id,
   CalendarType? type,
   DocumentReference? projectId,
   DocumentReference? userId,
@@ -117,7 +110,6 @@ Map<String, dynamic> createCalendarSettingsRecordData({
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id': id,
       'type': type,
       'project_id': projectId,
       'user_id': userId,
@@ -136,8 +128,7 @@ class CalendarSettingsRecordDocumentEquality
   @override
   bool equals(CalendarSettingsRecord? e1, CalendarSettingsRecord? e2) {
     const listEquality = ListEquality();
-    return e1?.id == e2?.id &&
-        e1?.type == e2?.type &&
+    return e1?.type == e2?.type &&
         e1?.projectId == e2?.projectId &&
         e1?.userId == e2?.userId &&
         listEquality.equals(e1?.workingPattern, e2?.workingPattern) &&
@@ -148,7 +139,6 @@ class CalendarSettingsRecordDocumentEquality
 
   @override
   int hash(CalendarSettingsRecord? e) => const ListEquality().hash([
-        e?.id,
         e?.type,
         e?.projectId,
         e?.userId,

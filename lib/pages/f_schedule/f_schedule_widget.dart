@@ -643,7 +643,7 @@ class _FScheduleWidgetState extends State<FScheduleWidget> {
                                   children: [
                                     Expanded(
                                       child: Container(
-                                        height: 30.0,
+                                        height: 50.0,
                                         decoration: BoxDecoration(
                                           color: FlutterFlowTheme.of(context)
                                               .primaryBackground,
