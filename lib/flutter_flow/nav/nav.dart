@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -78,14 +77,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
-          ? CalendarSettingsFormScreen05Widget()
+          ? EProjectManagementNewWidget()
           : ASignInUPWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? CalendarSettingsFormScreen05Widget()
+              ? EProjectManagementNewWidget()
               : ASignInUPWidget(),
         ),
         FFRoute(
@@ -96,158 +95,134 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: BCreateProjectWidget.routeName,
           path: BCreateProjectWidget.routePath,
-          builder: (context, params) => BCreateProjectWidget(),
-        ),
-        FFRoute(
-          name: CalviewWidget.routeName,
-          path: CalviewWidget.routePath,
-          builder: (context, params) => CalviewWidget(),
-        ),
-        FFRoute(
-          name: CalWidget.routeName,
-          path: CalWidget.routePath,
-          builder: (context, params) => CalWidget(),
-        ),
-        FFRoute(
-          name: CTeamSetup13Widget.routeName,
-          path: CTeamSetup13Widget.routePath,
-          builder: (context, params) => CTeamSetup13Widget(),
-        ),
-        FFRoute(
-          name: DAddProjectScreenDraftWidget.routeName,
-          path: DAddProjectScreenDraftWidget.routePath,
-          builder: (context, params) => DAddProjectScreenDraftWidget(),
-        ),
-        FFRoute(
-          name: AddPeopleScreenWidget.routeName,
-          path: AddPeopleScreenWidget.routePath,
-          builder: (context, params) => AddPeopleScreenWidget(),
-        ),
-        FFRoute(
-          name: DAddProjectScreen23Widget.routeName,
-          path: DAddProjectScreen23Widget.routePath,
-          builder: (context, params) => DAddProjectScreen23Widget(),
-        ),
-        FFRoute(
-          name: TeammembersWidget.routeName,
-          path: TeammembersWidget.routePath,
-          builder: (context, params) => TeammembersWidget(),
+          requireAuth: true,
+          asyncParams: {
+            'project': getDoc(['projects'], ProjectsRecord.fromSnapshot),
+          },
+          builder: (context, params) => BCreateProjectWidget(
+            project: params.getParam(
+              'project',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
           name: CAddTeamMembersWidget.routeName,
           path: CAddTeamMembersWidget.routePath,
-          builder: (context, params) => CAddTeamMembersWidget(),
-        ),
-        FFRoute(
-          name: PeopleManagementWidget.routeName,
-          path: PeopleManagementWidget.routePath,
-          builder: (context, params) => PeopleManagementWidget(),
-        ),
-        FFRoute(
-          name: AddPeopleScreenCopyWidget.routeName,
-          path: AddPeopleScreenCopyWidget.routePath,
-          builder: (context, params) => AddPeopleScreenCopyWidget(),
+          requireAuth: true,
+          asyncParams: {
+            'project': getDoc(['projects'], ProjectsRecord.fromSnapshot),
+          },
+          builder: (context, params) => CAddTeamMembersWidget(
+            project: params.getParam(
+              'project',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
           name: DPeopleManagementDashboardWidget.routeName,
           path: DPeopleManagementDashboardWidget.routePath,
-          builder: (context, params) => DPeopleManagementDashboardWidget(),
-        ),
-        FFRoute(
-          name: Tableentry4Widget.routeName,
-          path: Tableentry4Widget.routePath,
-          builder: (context, params) => Tableentry4Widget(),
-        ),
-        FFRoute(
-          name: EProjectManagementWidget.routeName,
-          path: EProjectManagementWidget.routePath,
-          builder: (context, params) => EProjectManagementWidget(),
-        ),
-        FFRoute(
-          name: CalendarSettings01Widget.routeName,
-          path: CalendarSettings01Widget.routePath,
-          builder: (context, params) => CalendarSettings01Widget(),
-        ),
-        FFRoute(
-          name: FScheduleWidget.routeName,
-          path: FScheduleWidget.routePath,
-          builder: (context, params) => FScheduleWidget(),
-        ),
-        FFRoute(
-          name: Claneder02Widget.routeName,
-          path: Claneder02Widget.routePath,
-          builder: (context, params) => Claneder02Widget(),
-        ),
-        FFRoute(
-          name: Claneder02CopyWidget.routeName,
-          path: Claneder02CopyWidget.routePath,
-          builder: (context, params) => Claneder02CopyWidget(),
-        ),
-        FFRoute(
-          name: CalendarSettings02CopyWidget.routeName,
-          path: CalendarSettings02CopyWidget.routePath,
-          builder: (context, params) => CalendarSettings02CopyWidget(),
-        ),
-        FFRoute(
-          name: CalendarSettings04Widget.routeName,
-          path: CalendarSettings04Widget.routePath,
-          builder: (context, params) => CalendarSettings04Widget(),
-        ),
-        FFRoute(
-          name: CalendarSettingsFormScreen01Widget.routeName,
-          path: CalendarSettingsFormScreen01Widget.routePath,
-          builder: (context, params) => CalendarSettingsFormScreen01Widget(),
-        ),
-        FFRoute(
-          name: CalendarSettingsFormScreen02Widget.routeName,
-          path: CalendarSettingsFormScreen02Widget.routePath,
-          builder: (context, params) => CalendarSettingsFormScreen02Widget(),
-        ),
-        FFRoute(
-          name: CalendarSettingsFormScreen03Widget.routeName,
-          path: CalendarSettingsFormScreen03Widget.routePath,
-          builder: (context, params) => CalendarSettingsFormScreen03Widget(),
-        ),
-        FFRoute(
-          name: CalendarSettingsFormScreen04Widget.routeName,
-          path: CalendarSettingsFormScreen04Widget.routePath,
-          builder: (context, params) => CalendarSettingsFormScreen04Widget(),
-        ),
-        FFRoute(
-          name: CalendarSettingsFormScreen05Widget.routeName,
-          path: CalendarSettingsFormScreen05Widget.routePath,
           requireAuth: true,
-          builder: (context, params) => CalendarSettingsFormScreen05Widget(),
+          asyncParams: {
+            'selectedProject':
+                getDoc(['projects'], ProjectsRecord.fromSnapshot),
+          },
+          builder: (context, params) => DPeopleManagementDashboardWidget(
+            selectedProject: params.getParam(
+              'selectedProject',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
-          name: CalendarSettingsFormScreen06Widget.routeName,
-          path: CalendarSettingsFormScreen06Widget.routePath,
-          builder: (context, params) => CalendarSettingsFormScreen06Widget(),
+          name: FCalenderAllocationsWidget.routeName,
+          path: FCalenderAllocationsWidget.routePath,
+          asyncParams: {
+            'selectedProject':
+                getDoc(['projects'], ProjectsRecord.fromSnapshot),
+          },
+          builder: (context, params) => FCalenderAllocationsWidget(
+            selectedProject: params.getParam(
+              'selectedProject',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
-          name: CalendarSettingsFormScreen07Widget.routeName,
-          path: CalendarSettingsFormScreen07Widget.routePath,
-          builder: (context, params) => CalendarSettingsFormScreen07Widget(),
+          name: ASignUp12Widget.routeName,
+          path: ASignUp12Widget.routePath,
+          requireAuth: true,
+          builder: (context, params) => ASignUp12Widget(),
         ),
         FFRoute(
-          name: GCalenderALLOCATIONWidget.routeName,
-          path: GCalenderALLOCATIONWidget.routePath,
-          builder: (context, params) => GCalenderALLOCATIONWidget(),
+          name: ASignUp22Widget.routeName,
+          path: ASignUp22Widget.routePath,
+          requireAuth: true,
+          builder: (context, params) => ASignUp22Widget(),
         ),
         FFRoute(
-          name: Clender05Widget.routeName,
-          path: Clender05Widget.routePath,
-          builder: (context, params) => Clender05Widget(),
+          name: CEditTeamMembersWidget.routeName,
+          path: CEditTeamMembersWidget.routePath,
+          asyncParams: {
+            'project': getDoc(['projects'], ProjectsRecord.fromSnapshot),
+          },
+          builder: (context, params) => CEditTeamMembersWidget(
+            project: params.getParam(
+              'project',
+              ParamType.Document,
+            ),
+          ),
         ),
         FFRoute(
-          name: GCalenderALLOCATIONCopyWidget.routeName,
-          path: GCalenderALLOCATIONCopyWidget.routePath,
-          builder: (context, params) => GCalenderALLOCATIONCopyWidget(),
+          name: GProfileSettingWidget.routeName,
+          path: GProfileSettingWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => GProfileSettingWidget(),
         ),
         FFRoute(
-          name: H01Widget.routeName,
-          path: H01Widget.routePath,
-          builder: (context, params) => H01Widget(),
+          name: HCalenderSettingWidget.routeName,
+          path: HCalenderSettingWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => HCalenderSettingWidget(),
+        ),
+        FFRoute(
+          name: CAddTeamMembersCopy2Widget.routeName,
+          path: CAddTeamMembersCopy2Widget.routePath,
+          asyncParams: {
+            'project': getDoc(['projects'], ProjectsRecord.fromSnapshot),
+          },
+          builder: (context, params) => CAddTeamMembersCopy2Widget(
+            project: params.getParam(
+              'project',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: CAddTeamMembersCopyWidget.routeName,
+          path: CAddTeamMembersCopyWidget.routePath,
+          asyncParams: {
+            'project': getDoc(['projects'], ProjectsRecord.fromSnapshot),
+          },
+          builder: (context, params) => CAddTeamMembersCopyWidget(
+            project: params.getParam(
+              'project',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: IUsersManagementWidget.routeName,
+          path: IUsersManagementWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => IUsersManagementWidget(),
+        ),
+        FFRoute(
+          name: HCalenderSettingCopyWidget.routeName,
+          path: HCalenderSettingCopyWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => HCalenderSettingCopyWidget(),
         ),
         FFRoute(
           name: ReportWidget.routeName,
@@ -255,34 +230,89 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ReportWidget(),
         ),
         FFRoute(
-          name: Page4Widget.routeName,
-          path: Page4Widget.routePath,
-          builder: (context, params) => Page4Widget(),
+          name: KAllocationViewWidget.routeName,
+          path: KAllocationViewWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => KAllocationViewWidget(),
         ),
         FFRoute(
-          name: TaskManagement2Widget.routeName,
-          path: TaskManagement2Widget.routePath,
-          builder: (context, params) => TaskManagement2Widget(),
+          name: JGeneralCalenderSettingWidget.routeName,
+          path: JGeneralCalenderSettingWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => JGeneralCalenderSettingWidget(),
         ),
         FFRoute(
-          name: Ccc02Widget.routeName,
-          path: Ccc02Widget.routePath,
-          builder: (context, params) => Ccc02Widget(),
+          name: HCalenderSettingCopy2Widget.routeName,
+          path: HCalenderSettingCopy2Widget.routePath,
+          requireAuth: true,
+          builder: (context, params) => HCalenderSettingCopy2Widget(),
         ),
         FFRoute(
-          name: Ccc03Widget.routeName,
-          path: Ccc03Widget.routePath,
-          builder: (context, params) => Ccc03Widget(),
+          name: JGeneralCalenderSettingCopyWidget.routeName,
+          path: JGeneralCalenderSettingCopyWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => JGeneralCalenderSettingCopyWidget(),
         ),
         FFRoute(
-          name: Ccc04Widget.routeName,
-          path: Ccc04Widget.routePath,
-          builder: (context, params) => Ccc04Widget(),
+          name: EProjectManagementNewWidget.routeName,
+          path: EProjectManagementNewWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => EProjectManagementNewWidget(),
         ),
         FFRoute(
-          name: Ccc05Widget.routeName,
-          path: Ccc05Widget.routePath,
-          builder: (context, params) => Ccc05Widget(),
+          name: CardsForUsersWidget.routeName,
+          path: CardsForUsersWidget.routePath,
+          builder: (context, params) => CardsForUsersWidget(),
+        ),
+        FFRoute(
+          name: ASignUp22CopyWidget.routeName,
+          path: ASignUp22CopyWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => ASignUp22CopyWidget(),
+        ),
+        FFRoute(
+          name: LForgetPasswordWidget.routeName,
+          path: LForgetPasswordWidget.routePath,
+          builder: (context, params) => LForgetPasswordWidget(),
+        ),
+        FFRoute(
+          name: MClientsManagmentWidget.routeName,
+          path: MClientsManagmentWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => MClientsManagmentWidget(),
+        ),
+        FFRoute(
+          name: NAddClientWidget.routeName,
+          path: NAddClientWidget.routePath,
+          requireAuth: true,
+          asyncParams: {
+            'client': getDoc(['clients'], ClientsRecord.fromSnapshot),
+          },
+          builder: (context, params) => NAddClientWidget(
+            client: params.getParam(
+              'client',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: KAllocationViewCopyWidget.routeName,
+          path: KAllocationViewCopyWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => KAllocationViewCopyWidget(),
+        ),
+        FFRoute(
+          name: K1AllocationViewRescourceViewWidget.routeName,
+          path: K1AllocationViewRescourceViewWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => K1AllocationViewRescourceViewWidget(),
+        ),
+        FFRoute(
+          name: K1AllocationViewRescourceViewCopyWidget.routeName,
+          path: K1AllocationViewRescourceViewCopyWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) =>
+              K1AllocationViewRescourceViewCopyWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

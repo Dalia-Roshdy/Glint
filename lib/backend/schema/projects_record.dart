@@ -15,11 +15,6 @@ class ProjectsRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "id" field.
-  String? _id;
-  String get id => _id ?? '';
-  bool hasId() => _id != null;
-
   // "name" field.
   String? _name;
   String get name => _name ?? '';
@@ -50,20 +45,19 @@ class ProjectsRecord extends FirestoreRecord {
   bool get active => _active ?? false;
   bool hasActive() => _active != null;
 
-  // "Client" field.
-  String? _client;
-  String get client => _client ?? '';
-  bool hasClient() => _client != null;
+  // "client_id" field.
+  DocumentReference? _clientId;
+  DocumentReference? get clientId => _clientId;
+  bool hasClientId() => _clientId != null;
 
   void _initializeFields() {
-    _id = snapshotData['id'] as String?;
     _name = snapshotData['name'] as String?;
     _color = snapshotData['color'] as String?;
     _createdBy = snapshotData['created_by'] as DocumentReference?;
     _createdDate = snapshotData['created_date'] as DateTime?;
     _calendarId = snapshotData['calendar_id'] as DocumentReference?;
     _active = snapshotData['Active'] as bool?;
-    _client = snapshotData['Client'] as String?;
+    _clientId = snapshotData['client_id'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -101,25 +95,23 @@ class ProjectsRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createProjectsRecordData({
-  String? id,
   String? name,
   String? color,
   DocumentReference? createdBy,
   DateTime? createdDate,
   DocumentReference? calendarId,
   bool? active,
-  String? client,
+  DocumentReference? clientId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'id': id,
       'name': name,
       'color': color,
       'created_by': createdBy,
       'created_date': createdDate,
       'calendar_id': calendarId,
       'Active': active,
-      'Client': client,
+      'client_id': clientId,
     }.withoutNulls,
   );
 
@@ -131,26 +123,24 @@ class ProjectsRecordDocumentEquality implements Equality<ProjectsRecord> {
 
   @override
   bool equals(ProjectsRecord? e1, ProjectsRecord? e2) {
-    return e1?.id == e2?.id &&
-        e1?.name == e2?.name &&
+    return e1?.name == e2?.name &&
         e1?.color == e2?.color &&
         e1?.createdBy == e2?.createdBy &&
         e1?.createdDate == e2?.createdDate &&
         e1?.calendarId == e2?.calendarId &&
         e1?.active == e2?.active &&
-        e1?.client == e2?.client;
+        e1?.clientId == e2?.clientId;
   }
 
   @override
   int hash(ProjectsRecord? e) => const ListEquality().hash([
-        e?.id,
         e?.name,
         e?.color,
         e?.createdBy,
         e?.createdDate,
         e?.calendarId,
         e?.active,
-        e?.client
+        e?.clientId
       ]);
 
   @override

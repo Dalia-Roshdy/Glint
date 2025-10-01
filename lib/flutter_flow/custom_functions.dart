@@ -14,185 +14,82 @@ import '/backend/schema/structs/index.dart';
 import '/backend/schema/enums/enums.dart';
 import '/auth/firebase_auth/auth_util.dart';
 
-List<DateHourStruct>? expandRepeatPattern(
-  DateTime startDate,
-  DateTime repeatUntil,
-  List<WorkingDayHourStruct> repeatpattern,
-) {
-  // need to expand repeated patern in allocation collection into date and hour list
-  List<DateHourStruct> result = [];
-  DateTime currentDate = startDate;
-
-  while (currentDate.isBefore(repeatUntil) ||
-      currentDate.isAtSameMomentAs(repeatUntil)) {
-    for (var pattern in repeatpattern) {
-      if (DateFormat.EEEE().format(currentDate) == pattern.workingDay) {
-        result
-            .add(DateHourStruct(date: currentDate, hours: pattern.workingHour));
-      }
-    }
-    currentDate = currentDate.add(Duration(days: 1));
+List<String> generateDateList(DateTime startDate) {
+  // create a string list from startDate and 6 more  consequant dates in a string format MM/dd/yyyy
+  List<String> dateList = [];
+  for (int i = 0; i < 7; i++) {
+    dateList
+        .add(DateFormat('yyyy-MM-dd').format(startDate.add(Duration(days: i))));
   }
-
-  return result.isNotEmpty ? result : null;
-}
-
-List<CalendarUserDataStruct>? listUserCalenderData(
-  DocumentReference userid,
-  DateTime startDate,
-  DateTime endDate,
-  CalendarSettingsRecord calendar,
-) {
-  // List to hold the final output
-  List<CalendarUserDataStruct> calendarData = [];
-
-  // Get holidays from the calendar
-  final List<DateTime> holidays = calendar.holidays;
-
-  // Iterate through each date from start to end
-  for (DateTime date = startDate;
-      !date.isAfter(endDate);
-      date = date.add(Duration(days: 1))) {
-    // Skip holidays
-    if (holidays.contains(date)) continue;
-
-    // Check if this day matches a working pattern
-    for (final pattern in calendar.workingPattern) {
-      final dayName = DateFormat.EEEE().format(date); // "Monday", etc.
-
-      if (pattern.workingDay == dayName) {
-        // Create and add the user calendar data
-        calendarData.add(CalendarUserDataStruct(
-          userId: userid,
-          date: date,
-          workingHours: pattern.workingHour,
-        ));
-        break; // No need to check more patterns once matched
-      }
-    }
-  }
-  return calendarData;
-}
-
-List<ProjectUserHoursStruct>? listUserProjectCalenderData(
-  DocumentReference userid,
-  DateTime startDate,
-  DateTime endDate,
-  CalendarSettingsRecord calendar,
-  List<AllocationsRecord> allocationList,
-) {
-  // List to hold the final output
-  List<CalendarUserDataStruct> calendarData = [];
-
-  // Get holidays from the calendar
-  final List<DateTime> holidays = calendar.holidays;
-
-  // Iterate through each date from start to end
-  for (DateTime date = startDate;
-      !date.isAfter(endDate);
-      date = date.add(Duration(days: 1))) {
-    // Skip holidays
-    if (holidays.contains(date)) continue;
-
-    // Check if this day matches a working pattern
-    for (final pattern in calendar.workingPattern) {
-      final dayName = DateFormat.EEEE().format(date); // "Monday", etc.
-
-      if (pattern.workingDay == dayName) {
-        // Create and add the user calendar data
-        calendarData.add(CalendarUserDataStruct(
-          userId: userid,
-          date: date,
-          workingHours: pattern.workingHour,
-        ));
-        break; // No need to check more patterns once matched
-      }
-    }
-  }
-
-  List<ProjectUserHoursStruct> projectUserList = [];
-
-  for (final allocation in allocationList) {
-    // Defensive checks
-    if (allocation.userId == null ||
-        allocation.projectId == null ||
-        allocation.repeatUntill == null) {
-      continue;
-    }
-
-    DateTime currentDate = startDate;
-
-    while (currentDate.isBefore(allocation.repeatUntill ?? DateTime.now()) ||
-        currentDate
-            .isAtSameMomentAs(allocation.repeatUntill ?? DateTime.now())) {
-      for (final pattern in allocation.repeatPattern) {
-        if (DateFormat.EEEE().format(currentDate) == pattern.workingDay) {
-          projectUserList.add(ProjectUserHoursStruct(
-              date: currentDate,
-              usreId: allocation.userId,
-              projectId: allocation.projectId,
-              projectUserHours: pattern.workingHour,
-              totalUserHours: calendarData
-                  .firstWhere((r) =>
-                      r.userId == allocation.userId && r.date == currentDate)
-                  .workingHours));
-        }
-      }
-    }
-  }
-  return projectUserList.isNotEmpty ? projectUserList : null;
-}
-
-List<CalendarProjectDataStruct>? listProjectCalenderData(
-  DocumentReference projectid,
-  DateTime startDate,
-  DateTime endDate,
-  CalendarSettingsRecord calendar,
-) {
-  // List to hold the final output
-  List<CalendarProjectDataStruct> calendarData = [];
-
-  // Get holidays from the calendar
-  final List<DateTime> holidays = calendar.holidays;
-
-  // Iterate through each date from start to end
-  for (DateTime date = startDate;
-      !date.isAfter(endDate);
-      date = date.add(Duration(days: 1))) {
-    // Skip holidays
-    if (holidays.contains(date)) continue;
-
-    // Check if this day matches a working pattern
-    for (final pattern in calendar.workingPattern) {
-      final dayName = DateFormat.EEEE().format(date); // "Monday", etc.
-
-      if (pattern.workingDay == dayName) {
-        // Create and add the user calendar data
-        calendarData.add(CalendarProjectDataStruct(
-          projectId: projectid,
-          date: date,
-          workingHours: pattern.workingHour,
-        ));
-        break; // No need to check more patterns once matched
-      }
-    }
-  }
-  return calendarData;
-}
-
-List<DateTime> generateDateList(
-  DateTime startDate,
-  DateTime endDate,
-) {
-  // return list of dates from startdate to enddate
-  List<DateTime> dateList = [];
-  DateTime currentDate = startDate;
-
-  while (
-      currentDate.isBefore(endDate) || currentDate.isAtSameMomentAs(endDate)) {
-    dateList.add(currentDate);
-    currentDate = currentDate.add(Duration(days: 1));
-  }
-
   return dateList;
+}
+
+int dateDifference(
+  DateTime startDate,
+  DateTime endDate,
+) {
+  // find date difference after extracting only date componend
+  // Extract only the date components (year, month, day) from the DateTime objects
+  DateTime start = DateTime(startDate.year, startDate.month, startDate.day);
+  DateTime end = DateTime(endDate.year, endDate.month, endDate.day);
+
+  // Calculate the difference in days
+  return end.difference(start).inDays + 1;
+}
+
+DateTime weekstartDate(String dateVar) {
+  // return start of week date  consider sunday is the start of the week
+
+  DateTime date = DateTime.parse(dateVar);
+
+  // Convert Sunday (7) to 0, other days remain 1–6
+  int weekday = date.weekday == 7 ? 0 : date.weekday;
+
+  // Subtract to get to previous Sunday
+  return DateTime(date.year, date.month, date.day)
+      .subtract(Duration(days: weekday));
+}
+
+DateTime weekendDate(String dateVar) {
+  // return start of week date  consider sunday is the start of the week
+
+  DateTime date = DateTime.parse(dateVar);
+
+  // Convert Sunday (7) to 0, other days remain 1–6
+  int weekday = date.weekday == 7 ? 0 : date.weekday;
+
+  // Subtract to get to previous Sunday
+  DateTime weekStart = DateTime(date.year, date.month, date.day)
+      .subtract(Duration(days: weekday));
+
+  return weekStart.add(Duration(days: 6));
+}
+
+DateTime getYesterday() {
+  // Create a FlutterFlow custom Dart function named getYesterday that returns yesterday’s DateTime.
+  return DateTime.now().subtract(Duration(days: 1));
+}
+
+List<UsersRecord>? getFreeEmp(
+  List<UsersRecord>? allUsers,
+  List<ProjectPermissionsRecord>? bookedUsers,
+) {
+  if (bookedUsers != null &&
+      bookedUsers.isNotEmpty &&
+      allUsers != null &&
+      allUsers.isNotEmpty) {
+    // Extract all assigned user references
+    final assignedUserRefs = bookedUsers
+        .map((perm) => perm.userId) // adjust field name if needed
+        .whereType<DocumentReference>()
+        .toSet();
+
+    // Return users not in assignedUserRefs
+    return allUsers
+        .where((user) => !assignedUserRefs.contains(user.reference))
+        .toList();
+  } else {
+    // If no booked users → everyone is unassigned
+    return allUsers;
+  }
 }

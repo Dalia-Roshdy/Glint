@@ -51,6 +51,11 @@ class CalendarSettingsRecord extends FirestoreRecord {
   DateTime? get updatedDate => _updatedDate;
   bool hasUpdatedDate() => _updatedDate != null;
 
+  // "parent_calendar" field.
+  DocumentReference? _parentCalendar;
+  DocumentReference? get parentCalendar => _parentCalendar;
+  bool hasParentCalendar() => _parentCalendar != null;
+
   void _initializeFields() {
     _type = snapshotData['type'] is CalendarType
         ? snapshotData['type']
@@ -64,6 +69,7 @@ class CalendarSettingsRecord extends FirestoreRecord {
     _holidays = getDataList(snapshotData['holidays']);
     _createdBy = snapshotData['created_by'] as DocumentReference?;
     _updatedDate = snapshotData['updated_date'] as DateTime?;
+    _parentCalendar = snapshotData['parent_calendar'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -107,6 +113,7 @@ Map<String, dynamic> createCalendarSettingsRecordData({
   DocumentReference? userId,
   DocumentReference? createdBy,
   DateTime? updatedDate,
+  DocumentReference? parentCalendar,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -115,6 +122,7 @@ Map<String, dynamic> createCalendarSettingsRecordData({
       'user_id': userId,
       'created_by': createdBy,
       'updated_date': updatedDate,
+      'parent_calendar': parentCalendar,
     }.withoutNulls,
   );
 
@@ -134,7 +142,8 @@ class CalendarSettingsRecordDocumentEquality
         listEquality.equals(e1?.workingPattern, e2?.workingPattern) &&
         listEquality.equals(e1?.holidays, e2?.holidays) &&
         e1?.createdBy == e2?.createdBy &&
-        e1?.updatedDate == e2?.updatedDate;
+        e1?.updatedDate == e2?.updatedDate &&
+        e1?.parentCalendar == e2?.parentCalendar;
   }
 
   @override
@@ -145,7 +154,8 @@ class CalendarSettingsRecordDocumentEquality
         e?.workingPattern,
         e?.holidays,
         e?.createdBy,
-        e?.updatedDate
+        e?.updatedDate,
+        e?.parentCalendar
       ]);
 
   @override

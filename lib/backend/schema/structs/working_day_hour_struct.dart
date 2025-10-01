@@ -17,7 +17,7 @@ class WorkingDayHourStruct extends FFFirebaseStruct {
 
   // "working_day" field.
   String? _workingDay;
-  String get workingDay => _workingDay ?? 'Mon';
+  String get workingDay => _workingDay ?? 'Monday';
   set workingDay(String? val) => _workingDay = val;
 
   bool hasWorkingDay() => _workingDay != null;

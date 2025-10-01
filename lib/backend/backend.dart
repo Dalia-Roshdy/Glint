@@ -10,6 +10,8 @@ import 'schema/projects_record.dart';
 import 'schema/project_permissions_record.dart';
 import 'schema/allocations_record.dart';
 import 'schema/calendar_settings_record.dart';
+import 'schema/clients_record.dart';
+import 'schema/project_color_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -23,6 +25,8 @@ export 'schema/projects_record.dart';
 export 'schema/project_permissions_record.dart';
 export 'schema/allocations_record.dart';
 export 'schema/calendar_settings_record.dart';
+export 'schema/clients_record.dart';
+export 'schema/project_color_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -204,6 +208,80 @@ Future<List<CalendarSettingsRecord>> queryCalendarSettingsRecordOnce({
     queryCollectionOnce(
       CalendarSettingsRecord.collection,
       CalendarSettingsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ClientsRecords (as a Stream and as a Future).
+Future<int> queryClientsRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ClientsRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ClientsRecord>> queryClientsRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ClientsRecord.collection,
+      ClientsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ClientsRecord>> queryClientsRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ClientsRecord.collection,
+      ClientsRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ProjectColorRecords (as a Stream and as a Future).
+Future<int> queryProjectColorRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ProjectColorRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ProjectColorRecord>> queryProjectColorRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ProjectColorRecord.collection,
+      ProjectColorRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ProjectColorRecord>> queryProjectColorRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ProjectColorRecord.collection,
+      ProjectColorRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

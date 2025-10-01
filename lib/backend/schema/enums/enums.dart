@@ -7,19 +7,20 @@ enum Role {
 }
 
 enum CalendarType {
-  General,
+  General_EG,
   Project,
   Resource,
+  General_US,
 }
 
 enum Days {
-  Sat,
-  Sun,
-  Mon,
-  Tue,
-  Wed,
-  Thu,
-  Fri,
+  Saturday,
+  Sunday,
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
 }
 
 extension FFEnumExtensions<T extends Enum> on T {

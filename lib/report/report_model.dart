@@ -1,14 +1,11 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import 'report_widget.dart' show ReportWidget;
 import 'package:flutter/material.dart';
 
 class ReportModel extends FlutterFlowModel<ReportWidget> {
-  ///  State fields for stateful widgets in this page.
+  ///  Local state fields for this page.
 
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  bool loadDone = false;
 
   @override
   void initState(BuildContext context) {}

@@ -60,6 +60,11 @@ class AllocationsRecord extends FirestoreRecord {
   DateTime? get createdDate => _createdDate;
   bool hasCreatedDate() => _createdDate != null;
 
+  // "notes" field.
+  String? _notes;
+  String get notes => _notes ?? '';
+  bool hasNotes() => _notes != null;
+
   void _initializeFields() {
     _id = snapshotData['id'] as String?;
     _userId = snapshotData['user_id'] as DocumentReference?;
@@ -73,6 +78,7 @@ class AllocationsRecord extends FirestoreRecord {
     _repeatUntill = snapshotData['repeat_untill'] as DateTime?;
     _assignedBy = snapshotData['assigned_by'] as DocumentReference?;
     _createdDate = snapshotData['created_date'] as DateTime?;
+    _notes = snapshotData['notes'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -118,6 +124,7 @@ Map<String, dynamic> createAllocationsRecordData({
   DateTime? repeatUntill,
   DocumentReference? assignedBy,
   DateTime? createdDate,
+  String? notes,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -129,6 +136,7 @@ Map<String, dynamic> createAllocationsRecordData({
       'repeat_untill': repeatUntill,
       'assigned_by': assignedBy,
       'created_date': createdDate,
+      'notes': notes,
     }.withoutNulls,
   );
 
@@ -149,7 +157,8 @@ class AllocationsRecordDocumentEquality implements Equality<AllocationsRecord> {
         listEquality.equals(e1?.repeatPattern, e2?.repeatPattern) &&
         e1?.repeatUntill == e2?.repeatUntill &&
         e1?.assignedBy == e2?.assignedBy &&
-        e1?.createdDate == e2?.createdDate;
+        e1?.createdDate == e2?.createdDate &&
+        e1?.notes == e2?.notes;
   }
 
   @override
@@ -162,7 +171,8 @@ class AllocationsRecordDocumentEquality implements Equality<AllocationsRecord> {
         e?.repeatPattern,
         e?.repeatUntill,
         e?.assignedBy,
-        e?.createdDate
+        e?.createdDate,
+        e?.notes
       ]);
 
   @override

@@ -522,6 +522,15 @@ extension StatefulWidgetExtensions on State<StatefulWidget> {
   }
 }
 
+String getCORSProxyUrl(String path) {
+  if (!kIsWeb) {
+    return path;
+  }
+  const proxyUrl =
+      'https://us-central1-glint-firebase.cloudfunctions.net/corsProxy?url=';
+  return '$proxyUrl$path';
+}
+
 // For iOS 16 and below, set the status bar color to match the app's theme.
 // https://github.com/flutter/flutter/issues/41067
 Brightness? _lastBrightness;
