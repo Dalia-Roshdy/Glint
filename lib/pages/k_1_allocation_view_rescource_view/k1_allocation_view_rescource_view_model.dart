@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -33,6 +34,18 @@ class K1AllocationViewRescourceViewModel
   void updateDateListAtIndex(int index, Function(String) updateFn) =>
       dateList[index] = updateFn(dateList[index]);
 
+  List<SingleWorkLoadStruct> apiRes = [];
+  void addToApiRes(SingleWorkLoadStruct item) => apiRes.add(item);
+  void removeFromApiRes(SingleWorkLoadStruct item) => apiRes.remove(item);
+  void removeAtIndexFromApiRes(int index) => apiRes.removeAt(index);
+  void insertAtIndexInApiRes(int index, SingleWorkLoadStruct item) =>
+      apiRes.insert(index, item);
+  void updateApiResAtIndex(
+          int index, Function(SingleWorkLoadStruct) updateFn) =>
+      apiRes[index] = updateFn(apiRes[index]);
+
+  String? errorMS;
+
   ///  State fields for stateful widgets in this page.
 
   // Stores action output result for [Firestore Query - Query a collection] action in K-1-Allocation_view_rescource_view widget.
@@ -44,7 +57,11 @@ class K1AllocationViewRescourceViewModel
   FormFieldController<String>? dropDownValueController;
   // Stores action output result for [Firestore Query - Query a collection] action in DropDown widget.
   UsersRecord? selecUser;
+  // Stores action output result for [Backend Call - API (singleResourceWorkLoad)] action in DropDown widget.
+  ApiCallResponse? apiRespoAct;
   DateTime? datePicked;
+  // Stores action output result for [Backend Call - API (singleResourceWorkLoad)] action in Container widget.
+  ApiCallResponse? apiRespoActD;
   // Model for D-No_Res component.
   late DNoResModel dNoResModel;
 

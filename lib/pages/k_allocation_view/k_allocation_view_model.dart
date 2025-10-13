@@ -2,7 +2,6 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/components/calendarwidget/calendarwidget_widget.dart';
 import '/pages/components/side_menu/side_menu_widget.dart';
-import '/index.dart';
 import 'k_allocation_view_widget.dart' show KAllocationViewWidget;
 import 'package:flutter/material.dart';
 

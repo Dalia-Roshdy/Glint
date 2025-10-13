@@ -58,19 +58,16 @@ class _EProjectManagementNewWidgetState
         setDarkModeSetting(context, ThemeMode.light);
         _model.colors = await queryProjectColorRecordOnce();
         _model.colorList = _model.colors!.toList().cast<ProjectColorRecord>();
-        safeSetState(() {});
         if (currentUserDocument?.role == Role.resource) {
           _model.ptojectList = await actions.getUserProjects(
             currentUserReference!,
           );
           _model.userProjectList =
               _model.ptojectList!.toList().cast<ProjectsRecord>();
-          safeSetState(() {});
         } else {
           _model.projList = await queryProjectsRecordOnce();
           _model.userProjectList =
               _model.projList!.toList().cast<ProjectsRecord>();
-          safeSetState(() {});
         }
 
         _model.showPicture = valueOrDefault<int>(

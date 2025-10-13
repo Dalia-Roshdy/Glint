@@ -34,6 +34,33 @@ class WorkLoadTestCall {
   }
 }
 
+class SingleResourceWorkLoadCall {
+  static Future<ApiCallResponse> call({
+    String? userId = 'kdoDwsbsLdU9Kk1WruEaxiJSxKE2',
+    String? startDate = '2025-10-05',
+    String? endDate = '2025-10-11',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'singleResourceWorkLoad',
+      apiUrl:
+          'https://us-central1-glint-firebase.cloudfunctions.net/singleResourceWorkLoad',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'user_id': userId,
+        'start_date': startDate,
+        'end_date': endDate,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

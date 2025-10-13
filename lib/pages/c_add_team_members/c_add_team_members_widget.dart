@@ -90,7 +90,11 @@ class _CAddTeamMembersWidgetState extends State<CAddTeamMembersWidget> {
         );
         _model.empList = functions
             .getFreeEmp(
-                _model.allUsers?.toList(), _model.bookedUsers?.toList())!
+                _model.allUsers
+                    ?.where((e) => e.calendarId != null)
+                    .toList()
+                    .toList(),
+                _model.bookedUsers?.toList())!
             .toList()
             .cast<UsersRecord>();
         _model.employeeCount = _model.empList.length;
