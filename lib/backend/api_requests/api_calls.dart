@@ -36,9 +36,9 @@ class WorkLoadTestCall {
 
 class SingleResourceWorkLoadCall {
   static Future<ApiCallResponse> call({
-    String? userId = 'kdoDwsbsLdU9Kk1WruEaxiJSxKE2',
-    String? startDate = '2025-10-05',
-    String? endDate = '2025-10-11',
+    String? userId = 'JLfjo4xYTTTcMEFIlKEsFFcrNmH3',
+    String? startDate = '2025-10-01',
+    String? endDate = '2025-10-30',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'singleResourceWorkLoad',

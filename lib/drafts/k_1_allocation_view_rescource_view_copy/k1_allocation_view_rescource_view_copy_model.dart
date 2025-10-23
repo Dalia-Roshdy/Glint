@@ -1,6 +1,6 @@
 import '/backend/backend.dart';
+import '/drafts/resource_calender/resource_calender_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/components/resource_calender/resource_calender_widget.dart';
 import '/pages/components/side_menu/side_menu_widget.dart';
 import '/index.dart';
 import 'k1_allocation_view_rescource_view_copy_widget.dart'

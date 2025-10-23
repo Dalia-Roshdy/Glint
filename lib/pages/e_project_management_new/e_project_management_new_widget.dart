@@ -10,6 +10,7 @@ import '/pages/components/message_add/message_add_widget.dart';
 import '/pages/components/side_menu/side_menu_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -356,26 +357,39 @@ class _EProjectManagementNewWidgetState
                                   ),
                                 ),
                               ),
-                            FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
-                              },
-                              text: 'Import ',
-                              icon: Icon(
-                                Icons.file_download,
-                                size: 16.0,
-                              ),
-                              options: FFButtonOptions(
-                                height: 36.0,
-                                padding: EdgeInsets.all(8.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.inter(
+                            if (false)
+                              FFButtonWidget(
+                                onPressed: () {
+                                  print('Button pressed ...');
+                                },
+                                text: 'Import ',
+                                icon: Icon(
+                                  Icons.file_download,
+                                  size: 16.0,
+                                ),
+                                options: FFButtonOptions(
+                                  height: 36.0,
+                                  padding: EdgeInsets.all(8.0),
+                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 0.0),
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.inter(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontWeight,
@@ -383,23 +397,14 @@ class _EProjectManagementNewWidgetState
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                elevation: 0.0,
-                                borderSide: BorderSide(
-                                  color: FlutterFlowTheme.of(context).alternate,
-                                  width: 1.0,
+                                  elevation: 0.0,
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
+                                  ),
                                 ),
                               ),
-                            ),
                           ].divide(SizedBox(width: 12.0)),
                         ),
                       ),
@@ -1039,56 +1044,105 @@ class _EProjectManagementNewWidgetState
                                                     alignment:
                                                         AlignmentDirectional(
                                                             0.0, 0.0),
-                                                    child: Container(
-                                                      width: 25.0,
-                                                      height: 25.0,
-                                                      decoration: BoxDecoration(
-                                                        color: projectDataListItem
-                                                                        .color !=
-                                                                    ''
-                                                            ? colorFromCssString(
-                                                                _model.colorList
-                                                                    .where((e) =>
-                                                                        e.color ==
-                                                                        projectDataListItem
-                                                                            .color)
-                                                                    .toList()
-                                                                    .firstOrNull!
-                                                                    .main,
-                                                                defaultColor:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primaryBackground,
-                                                              )
-                                                            : FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryBackground,
-                                                        shape: BoxShape.circle,
-                                                      ),
-                                                      child: Text(
-                                                        '',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .inter(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
+                                                    child: AlignedTooltip(
+                                                      content: Padding(
+                                                        padding:
+                                                            EdgeInsets.all(4.0),
+                                                        child: Text(
+                                                          projectDataListItem
+                                                                          .color !=
+                                                                      ''
+                                                              ? projectDataListItem
+                                                                  .color
+                                                              : '',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .primaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
+                                                                      .bodySmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      offset: 4.0,
+                                                      preferredDirection:
+                                                          AxisDirection.down,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                      backgroundColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground,
+                                                      elevation: 4.0,
+                                                      tailBaseWidth: 24.0,
+                                                      tailLength: 12.0,
+                                                      waitDuration: Duration(
+                                                          milliseconds: 100),
+                                                      showDuration: Duration(
+                                                          milliseconds: 100),
+                                                      triggerMode:
+                                                          TooltipTriggerMode
+                                                              .tap,
+                                                      child: Container(
+                                                        width: 25.0,
+                                                        height: 25.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: projectDataListItem
+                                                                          .color !=
+                                                                      ''
+                                                              ? colorFromCssString(
+                                                                  _model
+                                                                      .colorList
+                                                                      .where((e) =>
+                                                                          e.color ==
+                                                                          projectDataListItem
+                                                                              .color)
+                                                                      .toList()
+                                                                      .firstOrNull!
+                                                                      .complementary,
+                                                                  defaultColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryBackground,
+                                                                )
+                                                              : FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primaryBackground,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: Text(
+                                                          '',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -1098,6 +1152,21 @@ class _EProjectManagementNewWidgetState
                                                                       .bodyMedium
                                                                       .fontStyle,
                                                                 ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),

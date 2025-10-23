@@ -63,6 +63,12 @@ class _BCreateProjectWidgetState extends State<BCreateProjectWidget> {
         _model.colorList = await queryProjectColorRecordOnce();
         _model.colorData =
             _model.colorList!.toList().cast<ProjectColorRecord>();
+        _model.projectList = await queryProjectsRecordOnce(
+          queryBuilder: (projectsRecord) => projectsRecord.where(
+            'Active',
+            isEqualTo: true,
+          ),
+        );
         _model.clientsVar = await queryClientsRecordOnce();
         _model.clientList = _model.clientsVar!.toList().cast<ClientsRecord>();
         if (widget.project != null) {
@@ -549,99 +555,188 @@ class _BCreateProjectWidgetState extends State<BCreateProjectWidget> {
                                                 ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 8.0),
-                                              child:
-                                                  FlutterFlowDropDown<String>(
-                                                controller: _model
-                                                        .colorValueController ??=
-                                                    FormFieldController<String>(
-                                                        null),
-                                                options: _model.colorData
-                                                    .map((e) => e.color)
-                                                    .toList(),
-                                                onChanged: (val) async {
-                                                  safeSetState(() =>
-                                                      _model.colorValue = val);
-                                                  _model.color =
-                                                      _model.colorValue;
-                                                  safeSetState(() {});
-                                                },
-                                                width: 500.0,
-                                                height: 50.0,
-                                                textStyle: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primaryText,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontStyle:
+                                            Container(
+                                              decoration: BoxDecoration(),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 8.0),
+                                                    child: FlutterFlowDropDown<
+                                                        String>(
+                                                      controller: _model
+                                                              .colorValueController ??=
+                                                          FormFieldController<
+                                                              String>(null),
+                                                      options: _model.colorData
+                                                          .map((e) => e.color)
+                                                          .toList(),
+                                                      onChanged: (val) async {
+                                                        safeSetState(() =>
+                                                            _model.colorValue =
+                                                                val);
+                                                        _model.color =
+                                                            _model.colorValue;
+                                                        safeSetState(() {});
+                                                        _model.colorCount =
+                                                            _model.projectList!
+                                                                .where((e) =>
+                                                                    e.color ==
+                                                                    _model
+                                                                        .color)
+                                                                .toList()
+                                                                .length;
+                                                        safeSetState(() {});
+                                                      },
+                                                      width: 500.0,
+                                                      height: 50.0,
+                                                      textStyle:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                hintText: 'Select...',
-                                                icon: Icon(
-                                                  Icons
-                                                      .keyboard_arrow_down_rounded,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
-                                                ),
-                                                fillColor:
-                                                    _model.color != null &&
-                                                            _model.color != ''
-                                                        ? colorFromCssString(
-                                                            _model.colorData
-                                                                .where((e) =>
-                                                                    valueOrDefault<
-                                                                        bool>(
-                                                                      e.color ==
-                                                                          _model
-                                                                              .colorValue,
-                                                                      true,
-                                                                    ))
-                                                                .toList()
-                                                                .firstOrNull!
-                                                                .main,
-                                                            defaultColor:
-                                                                FlutterFlowTheme.of(
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .primaryText,
-                                                          )
-                                                        : FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryBackground,
-                                                elevation: 2.0,
-                                                borderColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                                borderWidth: 0.0,
-                                                borderRadius: 8.0,
-                                                margin: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        12.0, 0.0, 12.0, 0.0),
-                                                hidesUnderline: true,
-                                                isOverButton: false,
-                                                isSearchable: false,
-                                                isMultiSelect: false,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                      hintText: 'Select...',
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                      fillColor: _model.color !=
+                                                                  null &&
+                                                              _model.color != ''
+                                                          ? colorFromCssString(
+                                                              _model.colorData
+                                                                  .where((e) =>
+                                                                      valueOrDefault<
+                                                                          bool>(
+                                                                        e.color ==
+                                                                            _model.colorValue,
+                                                                        true,
+                                                                      ))
+                                                                  .toList()
+                                                                  .firstOrNull!
+                                                                  .main,
+                                                              defaultColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                            )
+                                                          : FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryBackground,
+                                                      elevation: 2.0,
+                                                      borderColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      borderWidth: 0.0,
+                                                      borderRadius: 8.0,
+                                                      margin:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  12.0,
+                                                                  0.0,
+                                                                  12.0,
+                                                                  0.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: false,
+                                                      isSearchable: false,
+                                                      isMultiSelect: false,
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            -1.0, -1.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  4.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Text(
+                                                        () {
+                                                          if (_model
+                                                                  .colorCount <
+                                                              1) {
+                                                            return '';
+                                                          } else if (_model
+                                                                  .colorCount ==
+                                                              1) {
+                                                            return 'It has been used once.';
+                                                          } else if (_model
+                                                                  .colorCount ==
+                                                              2) {
+                                                            return 'It has been used twice.';
+                                                          } else {
+                                                            return 'It has been used ${_model.colorCount.toString()} times.';
+                                                          }
+                                                        }(),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontStyle,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ),
                                             Align(

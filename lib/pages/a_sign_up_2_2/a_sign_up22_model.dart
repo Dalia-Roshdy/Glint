@@ -37,11 +37,8 @@ class ASignUp22Model extends FlutterFlowModel<ASignUp22Widget> {
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for calendarType widget.
-  CalendarType? calendarTypeValue1;
-  FormFieldController<CalendarType>? calendarTypeValueController1;
-  // State field(s) for calendarType widget.
-  CalendarType? calendarTypeValue2;
-  FormFieldController<CalendarType>? calendarTypeValueController2;
+  CalendarType? calendarTypeValue;
+  FormFieldController<CalendarType>? calendarTypeValueController;
   // Stores action output result for [Firestore Query - Query a collection] action in calendarType widget.
   CalendarSettingsRecord? generaCalenda;
   DateTime? datePicked;

@@ -6,8 +6,6 @@ export '/pages/c_add_team_members/c_add_team_members_widget.dart'
     show CAddTeamMembersWidget;
 export '/pages/d_people_management_dashboard/d_people_management_dashboard_widget.dart'
     show DPeopleManagementDashboardWidget;
-export '/pages/f_calender_allocations/f_calender_allocations_widget.dart'
-    show FCalenderAllocationsWidget;
 export '/pages/a_sign_up_1_2/a_sign_up12_widget.dart' show ASignUp12Widget;
 export '/pages/a_sign_up_2_2/a_sign_up22_widget.dart' show ASignUp22Widget;
 export '/drafts/c_edit_team_members/c_edit_team_members_widget.dart'
@@ -24,7 +22,6 @@ export '/pages/i_users_management/i_users_management_widget.dart'
     show IUsersManagementWidget;
 export '/drafts/h_calender_setting_copy/h_calender_setting_copy_widget.dart'
     show HCalenderSettingCopyWidget;
-export '/report/report_widget.dart' show ReportWidget;
 export '/pages/k_allocation_view/k_allocation_view_widget.dart'
     show KAllocationViewWidget;
 export '/pages/j_general_calender_setting/j_general_calender_setting_widget.dart'
@@ -35,7 +32,8 @@ export '/drafts/j_general_calender_setting_copy/j_general_calender_setting_copy_
     show JGeneralCalenderSettingCopyWidget;
 export '/pages/e_project_management_new/e_project_management_new_widget.dart'
     show EProjectManagementNewWidget;
-export '/cards_for_users/cards_for_users_widget.dart' show CardsForUsersWidget;
+export '/drafts/cards_for_users/cards_for_users_widget.dart'
+    show CardsForUsersWidget;
 export '/drafts/a_sign_up_2_2_copy/a_sign_up22_copy_widget.dart'
     show ASignUp22CopyWidget;
 export '/pages/l_forget_password/l_forget_password_widget.dart'
@@ -43,7 +41,7 @@ export '/pages/l_forget_password/l_forget_password_widget.dart'
 export '/pages/m_clients_managment/m_clients_managment_widget.dart'
     show MClientsManagmentWidget;
 export '/pages/n_add_client/n_add_client_widget.dart' show NAddClientWidget;
-export '/pages/k_allocation_view_copy/k_allocation_view_copy_widget.dart'
+export '/drafts/k_allocation_view_copy/k_allocation_view_copy_widget.dart'
     show KAllocationViewCopyWidget;
 export '/pages/k_1_allocation_view_rescource_view/k1_allocation_view_rescource_view_widget.dart'
     show K1AllocationViewRescourceViewWidget;

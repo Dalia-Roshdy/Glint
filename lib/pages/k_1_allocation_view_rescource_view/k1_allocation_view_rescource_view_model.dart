@@ -50,6 +50,10 @@ class K1AllocationViewRescourceViewModel
 
   // Stores action output result for [Firestore Query - Query a collection] action in K-1-Allocation_view_rescource_view widget.
   List<UsersRecord>? users;
+  // Stores action output result for [Firestore Query - Query a collection] action in K-1-Allocation_view_rescource_view widget.
+  UsersRecord? currUser;
+  // Stores action output result for [Backend Call - API (singleResourceWorkLoad)] action in K-1-Allocation_view_rescource_view widget.
+  ApiCallResponse? apiRespoActRes;
   // Model for sideMenu component.
   late SideMenuModel sideMenuModel;
   // State field(s) for DropDown widget.
@@ -59,6 +63,10 @@ class K1AllocationViewRescourceViewModel
   UsersRecord? selecUser;
   // Stores action output result for [Backend Call - API (singleResourceWorkLoad)] action in DropDown widget.
   ApiCallResponse? apiRespoAct;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
   DateTime? datePicked;
   // Stores action output result for [Backend Call - API (singleResourceWorkLoad)] action in Container widget.
   ApiCallResponse? apiRespoActD;
@@ -74,6 +82,9 @@ class K1AllocationViewRescourceViewModel
   @override
   void dispose() {
     sideMenuModel.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
+
     dNoResModel.dispose();
   }
 }

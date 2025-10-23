@@ -50,9 +50,6 @@ class HCalenderSettingModel extends FlutterFlowModel<HCalenderSettingWidget> {
   FormFieldController<CalendarType>? generalCalendarTypeValueController;
   // Stores action output result for [Firestore Query - Query a collection] action in generalCalendarType widget.
   CalendarSettingsRecord? generaCalenda;
-  // State field(s) for calendarType widget.
-  CalendarType? calendarTypeValue;
-  FormFieldController<CalendarType>? calendarTypeValueController;
   DateTime? datePicked;
   // Stores action output result for [Validate Form] action in Button widget.
   bool? form;

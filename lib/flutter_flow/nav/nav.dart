@@ -136,20 +136,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: FCalenderAllocationsWidget.routeName,
-          path: FCalenderAllocationsWidget.routePath,
-          asyncParams: {
-            'selectedProject':
-                getDoc(['projects'], ProjectsRecord.fromSnapshot),
-          },
-          builder: (context, params) => FCalenderAllocationsWidget(
-            selectedProject: params.getParam(
-              'selectedProject',
-              ParamType.Document,
-            ),
-          ),
-        ),
-        FFRoute(
           name: ASignUp12Widget.routeName,
           path: ASignUp12Widget.routePath,
           requireAuth: true,
@@ -223,11 +209,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: HCalenderSettingCopyWidget.routePath,
           requireAuth: true,
           builder: (context, params) => HCalenderSettingCopyWidget(),
-        ),
-        FFRoute(
-          name: ReportWidget.routeName,
-          path: ReportWidget.routePath,
-          builder: (context, params) => ReportWidget(),
         ),
         FFRoute(
           name: KAllocationViewWidget.routeName,

@@ -112,25 +112,6 @@ class _DAddProjectMemberWidgetState extends State<DAddProjectMemberWidget> {
                 borderRadius: BorderRadius.circular(6.0),
               ),
             ),
-          if (widget.canAllocate ?? true)
-            Text(
-              'No, thanks',
-              textAlign: TextAlign.center,
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    font: GoogleFonts.inter(
-                      fontWeight:
-                          FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                      fontStyle:
-                          FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                    ),
-                    color: FlutterFlowTheme.of(context).primary,
-                    letterSpacing: 0.0,
-                    fontWeight:
-                        FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                    fontStyle:
-                        FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                  ),
-            ),
         ].divide(SizedBox(height: 16.0)),
       ),
     );

@@ -1209,6 +1209,7 @@ class _CalendarwidgetWidgetState extends State<CalendarwidgetWidget> {
                         .where((e) => e.date == _model.startDate)
                         .toList()
                         .unique((e) => e.displayName)
+                        .sortedList(keyOf: (e) => e.displayName, desc: false)
                         .toList();
 
                     return ListView.builder(

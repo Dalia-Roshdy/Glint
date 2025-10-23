@@ -197,6 +197,8 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                         child: SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
@@ -1083,37 +1085,49 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                   ),
                                                 ),
                                               ),
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 10.0, 0.0, 0.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    0.0,
-                                                                    16.0,
-                                                                    24.0),
-                                                        child: Text(
-                                                          'Or sign up with',
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .labelMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .inter(
+                                              if (false)
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 10.0, 0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      0.0,
+                                                                      16.0,
+                                                                      24.0),
+                                                          child: Text(
+                                                            'Or sign up with',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  letterSpacing:
+                                                                      0.0,
                                                                   fontWeight: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelMedium
@@ -1123,234 +1137,222 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                                       .labelMedium
                                                                       .fontStyle,
                                                                 ),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                              ),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    16.0),
-                                                        child: Wrap(
-                                                          spacing: 16.0,
-                                                          runSpacing: 0.0,
-                                                          alignment:
-                                                              WrapAlignment
-                                                                  .center,
-                                                          crossAxisAlignment:
-                                                              WrapCrossAlignment
-                                                                  .center,
-                                                          direction:
-                                                              Axis.horizontal,
-                                                          runAlignment:
-                                                              WrapAlignment
-                                                                  .center,
-                                                          verticalDirection:
-                                                              VerticalDirection
-                                                                  .down,
-                                                          clipBehavior:
-                                                              Clip.none,
-                                                          children: [
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          16.0),
-                                                              child:
-                                                                  FFButtonWidget(
-                                                                onPressed:
-                                                                    () async {
-                                                                  GoRouter.of(
-                                                                          context)
-                                                                      .prepareAuthEvent();
-                                                                  final user =
-                                                                      await authManager
-                                                                          .signInWithGoogle(
-                                                                              context);
-                                                                  if (user ==
-                                                                      null) {
-                                                                    return;
-                                                                  }
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      16.0),
+                                                          child: Wrap(
+                                                            spacing: 16.0,
+                                                            runSpacing: 0.0,
+                                                            alignment:
+                                                                WrapAlignment
+                                                                    .center,
+                                                            crossAxisAlignment:
+                                                                WrapCrossAlignment
+                                                                    .center,
+                                                            direction:
+                                                                Axis.horizontal,
+                                                            runAlignment:
+                                                                WrapAlignment
+                                                                    .center,
+                                                            verticalDirection:
+                                                                VerticalDirection
+                                                                    .down,
+                                                            clipBehavior:
+                                                                Clip.none,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            16.0),
+                                                                child:
+                                                                    FFButtonWidget(
+                                                                  onPressed:
+                                                                      () async {
+                                                                    GoRouter.of(
+                                                                            context)
+                                                                        .prepareAuthEvent();
+                                                                    final user =
+                                                                        await authManager
+                                                                            .signInWithGoogle(context);
+                                                                    if (user ==
+                                                                        null) {
+                                                                      return;
+                                                                    }
 
-                                                                  context.goNamedAuth(
-                                                                      EProjectManagementNewWidget
-                                                                          .routeName,
-                                                                      context
-                                                                          .mounted);
-                                                                },
-                                                                text:
-                                                                    'Continue with Google',
-                                                                icon: FaIcon(
-                                                                  FontAwesomeIcons
-                                                                      .google,
-                                                                  size: 20.0,
-                                                                ),
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  width: 230.0,
-                                                                  height: 44.0,
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  iconPadding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryBackground,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .inter(
+                                                                    context.goNamedAuth(
+                                                                        EProjectManagementNewWidget
+                                                                            .routeName,
+                                                                        context
+                                                                            .mounted);
+                                                                  },
+                                                                  text:
+                                                                      'Continue with Google',
+                                                                  icon: FaIcon(
+                                                                    FontAwesomeIcons
+                                                                        .google,
+                                                                    size: 20.0,
+                                                                  ),
+                                                                  options:
+                                                                      FFButtonOptions(
+                                                                    width:
+                                                                        230.0,
+                                                                    height:
+                                                                        44.0,
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    iconPadding:
+                                                                        EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                    textStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                           fontWeight:
                                                                               FontWeight.bold,
                                                                           fontStyle: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .fontStyle,
                                                                         ),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                  elevation:
-                                                                      0.0,
-                                                                  borderSide:
-                                                                      BorderSide(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .alternate,
-                                                                    width: 2.0,
+                                                                    elevation:
+                                                                        0.0,
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .alternate,
+                                                                      width:
+                                                                          2.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            12.0),
+                                                                    hoverColor:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .primaryBackground,
                                                                   ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              12.0),
-                                                                  hoverColor: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBackground,
                                                                 ),
                                                               ),
-                                                            ),
-                                                            isAndroid
-                                                                ? Container()
-                                                                : Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            16.0),
-                                                                    child:
-                                                                        FFButtonWidget(
-                                                                      onPressed:
-                                                                          () async {
-                                                                        GoRouter.of(context)
-                                                                            .prepareAuthEvent();
-                                                                        final user =
-                                                                            await authManager.signInWithApple(context);
-                                                                        if (user ==
-                                                                            null) {
-                                                                          return;
-                                                                        }
+                                                              isAndroid
+                                                                  ? Container()
+                                                                  : Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          16.0),
+                                                                      child:
+                                                                          FFButtonWidget(
+                                                                        onPressed:
+                                                                            () async {
+                                                                          GoRouter.of(context)
+                                                                              .prepareAuthEvent();
+                                                                          final user =
+                                                                              await authManager.signInWithApple(context);
+                                                                          if (user ==
+                                                                              null) {
+                                                                            return;
+                                                                          }
 
-                                                                        context.goNamedAuth(
-                                                                            EProjectManagementNewWidget.routeName,
-                                                                            context.mounted);
-                                                                      },
-                                                                      text:
-                                                                          'Continue with Apple',
-                                                                      icon:
-                                                                          FaIcon(
-                                                                        FontAwesomeIcons
-                                                                            .apple,
-                                                                        size:
-                                                                            20.0,
-                                                                      ),
-                                                                      options:
-                                                                          FFButtonOptions(
-                                                                        width:
-                                                                            230.0,
-                                                                        height:
-                                                                            44.0,
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
-                                                                        textStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              font: GoogleFonts.inter(
+                                                                          context.goNamedAuth(
+                                                                              EProjectManagementNewWidget.routeName,
+                                                                              context.mounted);
+                                                                        },
+                                                                        text:
+                                                                            'Continue with Apple',
+                                                                        icon:
+                                                                            FaIcon(
+                                                                          FontAwesomeIcons
+                                                                              .apple,
+                                                                          size:
+                                                                              20.0,
+                                                                        ),
+                                                                        options:
+                                                                            FFButtonOptions(
+                                                                          width:
+                                                                              230.0,
+                                                                          height:
+                                                                              44.0,
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0,
+                                                                              0.0),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          textStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                font: GoogleFonts.inter(
+                                                                                  fontWeight: FontWeight.bold,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                ),
+                                                                                letterSpacing: 0.0,
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                        elevation:
-                                                                            0.0,
-                                                                        borderSide:
-                                                                            BorderSide(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).alternate,
-                                                                          width:
-                                                                              2.0,
+                                                                          elevation:
+                                                                              0.0,
+                                                                          borderSide:
+                                                                              BorderSide(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                            width:
+                                                                                2.0,
+                                                                          ),
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(12.0),
+                                                                          hoverColor:
+                                                                              FlutterFlowTheme.of(context).primaryBackground,
                                                                         ),
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(12.0),
-                                                                        hoverColor:
-                                                                            FlutterFlowTheme.of(context).primaryBackground,
                                                                       ),
                                                                     ),
-                                                                  ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ],
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
                                             ],
                                           ),
                                         ).animateOnPageLoad(animationsMap[
@@ -1370,6 +1372,8 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                         child: SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
@@ -2009,265 +2013,269 @@ class _ASignInUPWidgetState extends State<ASignInUPWidget>
                                                   ),
                                                 ),
                                               ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(16.0, 10.0,
-                                                          16.0, 24.0),
-                                                  child: Text(
-                                                    'Or sign in with',
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
+                                              if (false)
+                                                Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
                                                             context)
-                                                        .labelMedium
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .labelMedium
-                                                                  .fontStyle,
-                                                        ),
+                                                        .secondaryBackground,
                                                   ),
-                                                ),
-                                              ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Wrap(
-                                                  spacing: 16.0,
-                                                  runSpacing: 0.0,
-                                                  alignment:
-                                                      WrapAlignment.center,
-                                                  crossAxisAlignment:
-                                                      WrapCrossAlignment.center,
-                                                  direction: Axis.horizontal,
-                                                  runAlignment:
-                                                      WrapAlignment.center,
-                                                  verticalDirection:
-                                                      VerticalDirection.down,
-                                                  clipBehavior: Clip.none,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  16.0),
-                                                      child: FFButtonWidget(
-                                                        onPressed: () async {
-                                                          GoRouter.of(context)
-                                                              .prepareAuthEvent();
-                                                          final user =
-                                                              await authManager
-                                                                  .signInWithGoogle(
-                                                                      context);
-                                                          if (user == null) {
-                                                            return;
-                                                          }
-
-                                                          context.goNamedAuth(
-                                                              EProjectManagementNewWidget
-                                                                  .routeName,
-                                                              context.mounted);
-                                                        },
-                                                        text:
-                                                            'Continue with Google',
-                                                        icon: FaIcon(
-                                                          FontAwesomeIcons
-                                                              .google,
-                                                          size: 20.0,
-                                                        ),
-                                                        options:
-                                                            FFButtonOptions(
-                                                          width: 230.0,
-                                                          height: 44.0,
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          iconPadding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          textStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .inter(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
+                                                                      16.0,
+                                                                      10.0,
+                                                                      16.0,
+                                                                      24.0),
+                                                          child: Text(
+                                                            'Or sign in with',
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .fontWeight,
                                                                     fontStyle: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .bodyMedium
+                                                                        .labelMedium
                                                                         .fontStyle,
                                                                   ),
-                                                          elevation: 0.0,
-                                                          borderSide:
-                                                              BorderSide(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .alternate,
-                                                            width: 2.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .fontStyle,
+                                                                ),
                                                           ),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12.0),
-                                                          hoverColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primaryBackground,
                                                         ),
                                                       ),
-                                                    ),
-                                                    isAndroid
-                                                        ? Container()
-                                                        : Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        16.0),
-                                                            child:
-                                                                FFButtonWidget(
-                                                              onPressed:
-                                                                  () async {
-                                                                GoRouter.of(
-                                                                        context)
-                                                                    .prepareAuthEvent();
-                                                                final user =
-                                                                    await authManager
-                                                                        .signInWithApple(
-                                                                            context);
-                                                                if (user ==
-                                                                    null) {
-                                                                  return;
-                                                                }
+                                                      Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Wrap(
+                                                          spacing: 16.0,
+                                                          runSpacing: 0.0,
+                                                          alignment:
+                                                              WrapAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              WrapCrossAlignment
+                                                                  .center,
+                                                          direction:
+                                                              Axis.horizontal,
+                                                          runAlignment:
+                                                              WrapAlignment
+                                                                  .center,
+                                                          verticalDirection:
+                                                              VerticalDirection
+                                                                  .down,
+                                                          clipBehavior:
+                                                              Clip.none,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          16.0),
+                                                              child:
+                                                                  FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  GoRouter.of(
+                                                                          context)
+                                                                      .prepareAuthEvent();
+                                                                  final user =
+                                                                      await authManager
+                                                                          .signInWithGoogle(
+                                                                              context);
+                                                                  if (user ==
+                                                                      null) {
+                                                                    return;
+                                                                  }
 
-                                                                context.goNamedAuth(
-                                                                    EProjectManagementNewWidget
-                                                                        .routeName,
-                                                                    context
-                                                                        .mounted);
-                                                              },
-                                                              text:
-                                                                  'Continue with Apple',
-                                                              icon: FaIcon(
-                                                                FontAwesomeIcons
-                                                                    .apple,
-                                                                size: 20.0,
-                                                              ),
-                                                              options:
-                                                                  FFButtonOptions(
-                                                                width: 230.0,
-                                                                height: 44.0,
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
+                                                                  context.goNamedAuth(
+                                                                      EProjectManagementNewWidget
+                                                                          .routeName,
+                                                                      context
+                                                                          .mounted);
+                                                                },
+                                                                text:
+                                                                    'Continue with Google',
+                                                                icon: FaIcon(
+                                                                  FontAwesomeIcons
+                                                                      .google,
+                                                                  size: 20.0,
+                                                                ),
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: 230.0,
+                                                                  height: 44.0,
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  iconPadding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .inter(
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        letterSpacing:
                                                                             0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                iconPadding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                textStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .inter(
                                                                         fontWeight:
                                                                             FontWeight.bold,
                                                                         fontStyle: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .fontStyle,
                                                                       ),
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                elevation: 0.0,
-                                                                borderSide:
-                                                                    BorderSide(
-                                                                  color: FlutterFlowTheme.of(
+                                                                  elevation:
+                                                                      0.0,
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                    width: 2.0,
+                                                                  ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              12.0),
+                                                                  hoverColor: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .alternate,
-                                                                  width: 2.0,
+                                                                      .primaryBackground,
                                                                 ),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            12.0),
-                                                                hoverColor: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryBackground,
                                                               ),
                                                             ),
-                                                          ),
-                                                  ],
+                                                            isAndroid
+                                                                ? Container()
+                                                                : Padding(
+                                                                    padding: EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            16.0),
+                                                                    child:
+                                                                        FFButtonWidget(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        GoRouter.of(context)
+                                                                            .prepareAuthEvent();
+                                                                        final user =
+                                                                            await authManager.signInWithApple(context);
+                                                                        if (user ==
+                                                                            null) {
+                                                                          return;
+                                                                        }
+
+                                                                        context.goNamedAuth(
+                                                                            EProjectManagementNewWidget.routeName,
+                                                                            context.mounted);
+                                                                      },
+                                                                      text:
+                                                                          'Continue with Apple',
+                                                                      icon:
+                                                                          FaIcon(
+                                                                        FontAwesomeIcons
+                                                                            .apple,
+                                                                        size:
+                                                                            20.0,
+                                                                      ),
+                                                                      options:
+                                                                          FFButtonOptions(
+                                                                        width:
+                                                                            230.0,
+                                                                        height:
+                                                                            44.0,
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        textStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.inter(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                        elevation:
+                                                                            0.0,
+                                                                        borderSide:
+                                                                            BorderSide(
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).alternate,
+                                                                          width:
+                                                                              2.0,
+                                                                        ),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(12.0),
+                                                                        hoverColor:
+                                                                            FlutterFlowTheme.of(context).primaryBackground,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
                                               Align(
                                                 alignment: AlignmentDirectional(
                                                     0.0, 0.0),

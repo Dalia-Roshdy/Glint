@@ -57,9 +57,48 @@ class _K1AllocationViewRescourceViewWidgetState
             .cast<String>();
         safeSetState(() {});
       } else {
-        context.safePop();
+        _model.currUser = await queryUsersRecordOnce(
+          queryBuilder: (usersRecord) => usersRecord.where(
+            'uid',
+            isEqualTo: currentUserReference?.id,
+          ),
+          singleRecord: true,
+        ).then((s) => s.firstOrNull);
+        _model.selectedDate = dateTimeFormat("yyyy-MM-dd", getCurrentTimestamp);
+        _model.dateList = functions
+            .generateDateList(functions.weekstartDate(
+                dateTimeFormat("yyyy-MM-dd", getCurrentTimestamp)))
+            .toList()
+            .cast<String>();
+        _model.selectedRes = _model.currUser;
+        safeSetState(() {});
+        _model.textController?.text = _model.currUser!.displayName;
+
+        _model.apiRespoActRes = await SingleResourceWorkLoadCall.call(
+          userId: currentUserReference?.id,
+          startDate: _model.dateList.firstOrNull,
+          endDate: _model.dateList.lastOrNull,
+        );
+
+        if ((_model.apiRespoActRes?.statusCode ?? 200) == 200) {
+          _model.apiRes = ((_model.apiRespoActRes?.jsonBody ?? '')
+                  .toList()
+                  .map<SingleWorkLoadStruct?>(SingleWorkLoadStruct.maybeFromMap)
+                  .toList() as Iterable<SingleWorkLoadStruct?>)
+              .withoutNulls
+              .toList()
+              .cast<SingleWorkLoadStruct>();
+          safeSetState(() {});
+        } else {
+          _model.errorMS = 'No Result';
+          safeSetState(() {});
+        }
       }
     });
+
+    _model.textController ??=
+        TextEditingController(text: _model.selectedRes?.displayName);
+    _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -411,11 +450,10 @@ class _K1AllocationViewRescourceViewWidgetState
                                                                 ),
                                                           ),
                                                         ),
-                                                        Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Padding(
+                                                        if (currentUserDocument
+                                                                ?.role !=
+                                                            Role.resource)
+                                                          Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
@@ -424,106 +462,111 @@ class _K1AllocationViewRescourceViewWidgetState
                                                                         0.0,
                                                                         8.0),
                                                             child:
-                                                                FlutterFlowDropDown<
-                                                                    String>(
-                                                              controller: _model
-                                                                      .dropDownValueController ??=
-                                                                  FormFieldController<
+                                                                AuthUserStreamWidget(
+                                                              builder: (context) =>
+                                                                  FlutterFlowDropDown<
                                                                       String>(
-                                                                _model.dropDownValue ??= _model
-                                                                    .selectedRes
-                                                                    ?.displayName,
-                                                              ),
-                                                              options: List<
-                                                                      String>.from(
-                                                                  _model
-                                                                      .usersList
-                                                                      .map((e) =>
-                                                                          e.uid)
-                                                                      .toList()),
-                                                              optionLabels: _model
-                                                                  .usersList
-                                                                  .map((e) => e
-                                                                      .displayName)
-                                                                  .toList(),
-                                                              onChanged:
-                                                                  (val) async {
-                                                                safeSetState(() =>
-                                                                    _model.dropDownValue =
-                                                                        val);
-                                                                _model.selecUser =
-                                                                    await queryUsersRecordOnce(
-                                                                  queryBuilder:
-                                                                      (usersRecord) =>
-                                                                          usersRecord
-                                                                              .where(
-                                                                    'uid',
-                                                                    isEqualTo:
-                                                                        _model
-                                                                            .dropDownValue,
-                                                                  ),
-                                                                  singleRecord:
-                                                                      true,
-                                                                ).then((s) => s
-                                                                        .firstOrNull);
-                                                                _model.selectedRes =
+                                                                controller: _model
+                                                                        .dropDownValueController ??=
+                                                                    FormFieldController<
+                                                                        String>(
+                                                                  _model.dropDownValue ??=
+                                                                      '',
+                                                                ),
+                                                                options: List<
+                                                                        String>.from(
                                                                     _model
-                                                                        .selecUser;
-                                                                _model.apiRespoAct =
-                                                                    await SingleResourceWorkLoadCall
-                                                                        .call(
-                                                                  userId: _model
-                                                                      .selectedRes
-                                                                      ?.reference
-                                                                      .id,
-                                                                  startDate: _model
-                                                                      .dateList
-                                                                      .firstOrNull,
-                                                                  endDate: _model
-                                                                      .dateList
-                                                                      .lastOrNull,
-                                                                );
+                                                                        .usersList
+                                                                        .map((e) =>
+                                                                            e.uid)
+                                                                        .toList()),
+                                                                optionLabels: _model
+                                                                    .usersList
+                                                                    .map((e) =>
+                                                                        e.displayName)
+                                                                    .toList(),
+                                                                onChanged:
+                                                                    (val) async {
+                                                                  safeSetState(() =>
+                                                                      _model.dropDownValue =
+                                                                          val);
+                                                                  _model.selecUser =
+                                                                      await queryUsersRecordOnce(
+                                                                    queryBuilder:
+                                                                        (usersRecord) =>
+                                                                            usersRecord.where(
+                                                                      'uid',
+                                                                      isEqualTo:
+                                                                          _model
+                                                                              .dropDownValue,
+                                                                    ),
+                                                                    singleRecord:
+                                                                        true,
+                                                                  ).then((s) =>
+                                                                          s.firstOrNull);
+                                                                  _model.selectedRes =
+                                                                      _model
+                                                                          .selecUser;
+                                                                  _model.apiRespoAct =
+                                                                      await SingleResourceWorkLoadCall
+                                                                          .call(
+                                                                    userId: _model
+                                                                        .selectedRes
+                                                                        ?.reference
+                                                                        .id,
+                                                                    startDate: _model
+                                                                        .dateList
+                                                                        .firstOrNull,
+                                                                    endDate: _model
+                                                                        .dateList
+                                                                        .lastOrNull,
+                                                                  );
 
-                                                                if ((_model.apiRespoAct
-                                                                            ?.statusCode ??
-                                                                        200) ==
-                                                                    200) {
-                                                                  _model
-                                                                      .apiRes = ((_model.apiRespoAct?.jsonBody ??
-                                                                              '')
-                                                                          .toList()
-                                                                          .map<SingleWorkLoadStruct?>(
-                                                                              SingleWorkLoadStruct.maybeFromMap)
-                                                                          .toList() as Iterable<SingleWorkLoadStruct?>)
-                                                                      .withoutNulls
-                                                                      .toList()
-                                                                      .cast<SingleWorkLoadStruct>();
+                                                                  if ((_model.apiRespoAct
+                                                                              ?.statusCode ??
+                                                                          200) ==
+                                                                      200) {
+                                                                    _model
+                                                                        .apiRes = ((_model.apiRespoAct?.jsonBody ??
+                                                                                '')
+                                                                            .toList()
+                                                                            .map<SingleWorkLoadStruct?>(SingleWorkLoadStruct.maybeFromMap)
+                                                                            .toList() as Iterable<SingleWorkLoadStruct?>)
+                                                                        .withoutNulls
+                                                                        .toList()
+                                                                        .cast<SingleWorkLoadStruct>();
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  } else {
+                                                                    _model.errorMS =
+                                                                        'No Result';
+                                                                    safeSetState(
+                                                                        () {});
+                                                                  }
+
                                                                   safeSetState(
                                                                       () {});
-                                                                } else {
-                                                                  _model.errorMS =
-                                                                      'No Result';
-                                                                  safeSetState(
-                                                                      () {});
-                                                                }
-
-                                                                safeSetState(
-                                                                    () {});
-                                                              },
-                                                              width: 300.0,
-                                                              height: 40.0,
-                                                              maxHeight: MediaQuery
-                                                                          .sizeOf(
-                                                                              context)
-                                                                      .height *
-                                                                  0.3,
-                                                              searchHintTextStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .inter(
+                                                                },
+                                                                width: 300.0,
+                                                                height: 40.0,
+                                                                maxHeight: MediaQuery.sizeOf(
+                                                                            context)
+                                                                        .height *
+                                                                    0.3,
+                                                                searchHintTextStyle:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).labelMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).labelMedium.fontStyle,
+                                                                          ),
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .labelMedium
                                                                               .fontWeight,
@@ -531,22 +574,20 @@ class _K1AllocationViewRescourceViewWidgetState
                                                                               .labelMedium
                                                                               .fontStyle,
                                                                         ),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .labelMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                              searchTextStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .inter(
+                                                                searchTextStyle:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.inter(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .fontWeight,
@@ -554,80 +595,199 @@ class _K1AllocationViewRescourceViewWidgetState
                                                                               .bodyMedium
                                                                               .fontStyle,
                                                                         ),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                              textStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .inter(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                              hintText:
-                                                                  'Select Resource',
-                                                              searchHintText:
-                                                                  'Search...',
-                                                              searchCursorColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              icon: Icon(
-                                                                Icons
-                                                                    .keyboard_arrow_down_rounded,
-                                                                color: FlutterFlowTheme.of(
+                                                                textStyle: FlutterFlowTheme.of(
                                                                         context)
-                                                                    .secondaryText,
-                                                                size: 24.0,
-                                                              ),
-                                                              fillColor: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryBackground,
-                                                              elevation: 2.0,
-                                                              borderColor: Colors
-                                                                  .transparent,
-                                                              borderWidth: 0.0,
-                                                              borderRadius: 8.0,
-                                                              margin:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      letterSpacing:
                                                                           0.0,
-                                                                          12.0,
-                                                                          0.0),
-                                                              hidesUnderline:
-                                                                  true,
-                                                              isOverButton:
-                                                                  false,
-                                                              isSearchable:
-                                                                  true,
-                                                              isMultiSelect:
-                                                                  false,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                hintText:
+                                                                    'Select Resource',
+                                                                searchHintText:
+                                                                    'Search...',
+                                                                searchCursorColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_rounded,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 24.0,
+                                                                ),
+                                                                fillColor: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBackground,
+                                                                elevation: 2.0,
+                                                                borderColor: Colors
+                                                                    .transparent,
+                                                                borderWidth:
+                                                                    0.0,
+                                                                borderRadius:
+                                                                    8.0,
+                                                                margin: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        0.0,
+                                                                        12.0,
+                                                                        0.0),
+                                                                hidesUnderline:
+                                                                    true,
+                                                                disabled: currentUserDocument
+                                                                        ?.role ==
+                                                                    Role.resource,
+                                                                isOverButton:
+                                                                    false,
+                                                                isSearchable:
+                                                                    true,
+                                                                isMultiSelect:
+                                                                    false,
+                                                              ),
                                                             ),
                                                           ),
-                                                        ),
+                                                        if (currentUserDocument
+                                                                ?.role ==
+                                                            Role.resource)
+                                                          AuthUserStreamWidget(
+                                                            builder:
+                                                                (context) =>
+                                                                    Container(
+                                                              width: 300.0,
+                                                              child:
+                                                                  TextFormField(
+                                                                controller: _model
+                                                                    .textController,
+                                                                focusNode: _model
+                                                                    .textFieldFocusNode,
+                                                                autofocus:
+                                                                    false,
+                                                                enabled: true,
+                                                                readOnly: true,
+                                                                obscureText:
+                                                                    false,
+                                                                decoration:
+                                                                    InputDecoration(
+                                                                  isDense: true,
+                                                                  enabledBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Color(
+                                                                          0x00000000),
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: Color(
+                                                                          0x00000000),
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                  ),
+                                                                  errorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                  ),
+                                                                  focusedErrorBorder:
+                                                                      OutlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error,
+                                                                      width:
+                                                                          1.0,
+                                                                    ),
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            8.0),
+                                                                  ),
+                                                                  filled: true,
+                                                                  fillColor: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .inter(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                minLines: 1,
+                                                                cursorColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                                enableInteractiveSelection:
+                                                                    true,
+                                                                validator: _model
+                                                                    .textControllerValidator
+                                                                    .asValidator(
+                                                                        context),
+                                                              ),
+                                                            ),
+                                                          ),
                                                       ].divide(SizedBox(
                                                           width: 12.0)),
                                                     ),

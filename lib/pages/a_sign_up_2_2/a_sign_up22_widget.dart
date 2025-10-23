@@ -335,7 +335,7 @@ class _ASignUp22WidgetState extends State<ASignUp22Widget>
                                                                     .max,
                                                             children: [
                                                               Text(
-                                                                'Calendar Type',
+                                                                'General Calendar',
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .labelLarge
@@ -394,10 +394,10 @@ class _ASignUp22WidgetState extends State<ASignUp22Widget>
                                                         FlutterFlowDropDown<
                                                             CalendarType>(
                                                           controller: _model
-                                                                  .calendarTypeValueController1 ??=
+                                                                  .calendarTypeValueController ??=
                                                               FormFieldController<
                                                                   CalendarType>(
-                                                            _model.calendarTypeValue1 ??=
+                                                            _model.calendarTypeValue ??=
                                                                 null,
                                                           ),
                                                           options: List<
@@ -407,28 +407,55 @@ class _ASignUp22WidgetState extends State<ASignUp22Widget>
                                                                   .where((e) =>
                                                                       (e ==
                                                                           CalendarType
-                                                                              .Resource) ||
+                                                                              .General_EG) ||
                                                                       (e ==
                                                                           CalendarType
-                                                                              .Project))
+                                                                              .General_US))
                                                                   .toList()),
                                                           optionLabels: CalendarType
                                                               .values
                                                               .where((e) =>
                                                                   (e ==
                                                                       CalendarType
-                                                                          .Resource) ||
+                                                                          .General_EG) ||
                                                                   (e ==
                                                                       CalendarType
-                                                                          .Project))
+                                                                          .General_US))
                                                               .toList()
                                                               .map(
                                                                   (e) => e.name)
                                                               .toList(),
-                                                          onChanged: (val) =>
-                                                              safeSetState(() =>
-                                                                  _model.calendarTypeValue1 =
-                                                                      val),
+                                                          onChanged:
+                                                              (val) async {
+                                                            safeSetState(() =>
+                                                                _model.calendarTypeValue =
+                                                                    val);
+                                                            _model.generaCalenda =
+                                                                await queryCalendarSettingsRecordOnce(
+                                                              queryBuilder:
+                                                                  (calendarSettingsRecord) =>
+                                                                      calendarSettingsRecord
+                                                                          .where(
+                                                                            'type',
+                                                                            isEqualTo:
+                                                                                _model.calendarTypeValue?.serialize(),
+                                                                          )
+                                                                          .where(
+                                                                            'parent_calendar',
+                                                                            isEqualTo:
+                                                                                null,
+                                                                          ),
+                                                              singleRecord:
+                                                                  true,
+                                                            ).then((s) => s
+                                                                    .firstOrNull);
+                                                            _model.generalCalendar =
+                                                                _model
+                                                                    .generaCalenda;
+                                                            safeSetState(() {});
+
+                                                            safeSetState(() {});
+                                                          },
                                                           width:
                                                               double.infinity,
                                                           height: 50.0,
@@ -498,217 +525,6 @@ class _ASignUp22WidgetState extends State<ASignUp22Widget>
                                                       ].divide(SizedBox(
                                                           height: 8.0)),
                                                     ),
-                                                  ),
-                                                  Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    12.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          children: [
-                                                            Text(
-                                                              'General Calendar',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .inter(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelLarge
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelLarge
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                            Text(
-                                                              '*',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .labelLarge
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .inter(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .labelLarge
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .error,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelLarge
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                          ].divide(SizedBox(
-                                                              width: 4.0)),
-                                                        ),
-                                                      ),
-                                                      FlutterFlowDropDown<
-                                                          CalendarType>(
-                                                        controller: _model
-                                                                .calendarTypeValueController2 ??=
-                                                            FormFieldController<
-                                                                CalendarType>(
-                                                          _model.calendarTypeValue2 ??=
-                                                              null,
-                                                        ),
-                                                        options: List<
-                                                                CalendarType>.from(
-                                                            CalendarType.values
-                                                                .where((e) =>
-                                                                    (e ==
-                                                                        CalendarType
-                                                                            .General_EG) ||
-                                                                    (e ==
-                                                                        CalendarType
-                                                                            .General_US))
-                                                                .toList()),
-                                                        optionLabels: CalendarType
-                                                            .values
-                                                            .where((e) =>
-                                                                (e ==
-                                                                    CalendarType
-                                                                        .General_EG) ||
-                                                                (e ==
-                                                                    CalendarType
-                                                                        .General_US))
-                                                            .toList()
-                                                            .map((e) => e.name)
-                                                            .toList(),
-                                                        onChanged: (val) async {
-                                                          safeSetState(() =>
-                                                              _model.calendarTypeValue2 =
-                                                                  val);
-                                                          _model.generaCalenda =
-                                                              await queryCalendarSettingsRecordOnce(
-                                                            queryBuilder:
-                                                                (calendarSettingsRecord) =>
-                                                                    calendarSettingsRecord
-                                                                        .where(
-                                                                          'type',
-                                                                          isEqualTo: _model
-                                                                              .calendarTypeValue2
-                                                                              ?.serialize(),
-                                                                        )
-                                                                        .where(
-                                                                          'parent_calendar',
-                                                                          isEqualTo:
-                                                                              null,
-                                                                        ),
-                                                            singleRecord: true,
-                                                          ).then((s) => s
-                                                                  .firstOrNull);
-                                                          _model.generalCalendar =
-                                                              _model
-                                                                  .generaCalenda;
-                                                          safeSetState(() {});
-
-                                                          safeSetState(() {});
-                                                        },
-                                                        width: double.infinity,
-                                                        height: 50.0,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .inter(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      16.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                        hintText:
-                                                            ' Select calendar type',
-                                                        icon: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down_rounded,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        fillColor: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        elevation: 0.0,
-                                                        borderColor:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .alternate,
-                                                        borderWidth: 1.0,
-                                                        borderRadius: 12.0,
-                                                        margin:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    15.0,
-                                                                    0.0,
-                                                                    15.0,
-                                                                    0.0),
-                                                        hidesUnderline: true,
-                                                        isSearchable: false,
-                                                        isMultiSelect: false,
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(height: 8.0)),
                                                   ),
                                                   Padding(
                                                     padding:
@@ -2007,85 +1823,79 @@ class _ASignUp22WidgetState extends State<ASignUp22Widget>
                                         alignment:
                                             AlignmentDirectional(0.0, 0.0),
                                         child: FFButtonWidget(
-                                          onPressed:
-                                              !((_model.calendarTypeValue1 !=
-                                                          null) &&
-                                                      (_model.workingDays
-                                                          .isNotEmpty) &&
-                                                      (_model.calendarTypeValue2 !=
-                                                          null))
-                                                  ? null
-                                                  : () async {
-                                                      var calendarSettingsRecordReference =
-                                                          CalendarSettingsRecord
-                                                              .collection
-                                                              .doc();
-                                                      await calendarSettingsRecordReference
-                                                          .set({
-                                                        ...createCalendarSettingsRecordData(
-                                                          type: _model
-                                                              .calendarTypeValue1,
-                                                          userId:
-                                                              currentUserReference,
-                                                          createdBy:
-                                                              currentUserReference,
-                                                          parentCalendar: _model
-                                                              .generalCalendar
-                                                              ?.reference,
+                                          onPressed: !((_model.workingDays
+                                                      .isNotEmpty) &&
+                                                  (_model.calendarTypeValue !=
+                                                      null))
+                                              ? null
+                                              : () async {
+                                                  var calendarSettingsRecordReference =
+                                                      CalendarSettingsRecord
+                                                          .collection
+                                                          .doc();
+                                                  await calendarSettingsRecordReference
+                                                      .set({
+                                                    ...createCalendarSettingsRecordData(
+                                                      type:
+                                                          CalendarType.Resource,
+                                                      userId:
+                                                          currentUserReference,
+                                                      createdBy:
+                                                          currentUserReference,
+                                                      parentCalendar: _model
+                                                          .generalCalendar
+                                                          ?.reference,
+                                                    ),
+                                                    ...mapToFirestore(
+                                                      {
+                                                        'working_pattern':
+                                                            getWorkingDayHourListFirestoreData(
+                                                          _model.workingDays,
                                                         ),
-                                                        ...mapToFirestore(
-                                                          {
-                                                            'working_pattern':
-                                                                getWorkingDayHourListFirestoreData(
-                                                              _model
-                                                                  .workingDays,
-                                                            ),
-                                                            'holidays':
-                                                                _model.holidays,
-                                                          },
+                                                        'holidays':
+                                                            _model.holidays,
+                                                      },
+                                                    ),
+                                                  });
+                                                  _model.calendar =
+                                                      CalendarSettingsRecord
+                                                          .getDocumentFromData({
+                                                    ...createCalendarSettingsRecordData(
+                                                      type:
+                                                          CalendarType.Resource,
+                                                      userId:
+                                                          currentUserReference,
+                                                      createdBy:
+                                                          currentUserReference,
+                                                      parentCalendar: _model
+                                                          .generalCalendar
+                                                          ?.reference,
+                                                    ),
+                                                    ...mapToFirestore(
+                                                      {
+                                                        'working_pattern':
+                                                            getWorkingDayHourListFirestoreData(
+                                                          _model.workingDays,
                                                         ),
-                                                      });
-                                                      _model.calendar =
-                                                          CalendarSettingsRecord
-                                                              .getDocumentFromData({
-                                                        ...createCalendarSettingsRecordData(
-                                                          type: _model
-                                                              .calendarTypeValue1,
-                                                          userId:
-                                                              currentUserReference,
-                                                          createdBy:
-                                                              currentUserReference,
-                                                          parentCalendar: _model
-                                                              .generalCalendar
-                                                              ?.reference,
-                                                        ),
-                                                        ...mapToFirestore(
-                                                          {
-                                                            'working_pattern':
-                                                                getWorkingDayHourListFirestoreData(
-                                                              _model
-                                                                  .workingDays,
-                                                            ),
-                                                            'holidays':
-                                                                _model.holidays,
-                                                          },
-                                                        ),
-                                                      }, calendarSettingsRecordReference);
+                                                        'holidays':
+                                                            _model.holidays,
+                                                      },
+                                                    ),
+                                                  }, calendarSettingsRecordReference);
 
-                                                      await currentUserReference!
-                                                          .update(
-                                                              createUsersRecordData(
-                                                        calendarId: _model
-                                                            .calendar
-                                                            ?.reference,
-                                                      ));
+                                                  await currentUserReference!
+                                                      .update(
+                                                          createUsersRecordData(
+                                                    calendarId: _model
+                                                        .calendar?.reference,
+                                                  ));
 
-                                                      context.goNamed(
-                                                          EProjectManagementNewWidget
-                                                              .routeName);
+                                                  context.goNamed(
+                                                      EProjectManagementNewWidget
+                                                          .routeName);
 
-                                                      safeSetState(() {});
-                                                    },
+                                                  safeSetState(() {});
+                                                },
                                           text: 'Next',
                                           options: FFButtonOptions(
                                             width: 230.0,

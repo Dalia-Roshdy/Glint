@@ -93,3 +93,24 @@ List<UsersRecord>? getFreeEmp(
     return allUsers;
   }
 }
+
+DateTime monthstartDate(
+  int year,
+  int month,
+) {
+  // Return the first day of the given month and year
+
+  return DateTime(year, month, 1);
+}
+
+DateTime monthendDate(
+  int year,
+  int month,
+) {
+  // To get the last day of the month:
+  // Create the first day of the *next* month, then subtract 1 day
+  DateTime firstDayNextMonth =
+      (month == 12) ? DateTime(year + 1, 1, 1) : DateTime(year, month + 1, 1);
+
+  return firstDayNextMonth.subtract(const Duration(days: 1));
+}

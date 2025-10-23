@@ -35,11 +35,15 @@ class BCreateProjectModel extends FlutterFlowModel<BCreateProjectWidget> {
   void updateClientListAtIndex(int index, Function(ClientsRecord) updateFn) =>
       clientList[index] = updateFn(clientList[index]);
 
+  int colorCount = 0;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Firestore Query - Query a collection] action in B-Create_project widget.
   List<ProjectColorRecord>? colorList;
+  // Stores action output result for [Firestore Query - Query a collection] action in B-Create_project widget.
+  List<ProjectsRecord>? projectList;
   // Stores action output result for [Firestore Query - Query a collection] action in B-Create_project widget.
   List<ClientsRecord>? clientsVar;
   // State field(s) for projectName widget.

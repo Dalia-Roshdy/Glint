@@ -45,9 +45,6 @@ class _HCalenderSettingWidgetState extends State<HCalenderSettingWidget> {
         ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);
-      safeSetState(() {
-        _model.calendarTypeValueController?.value = _model.calendar!.type!;
-      });
       _model.holidays = _model.calendar!.holidays.toList().cast<DateTime>();
       _model.noOfHours = valueOrDefault<int>(
         _model.calendar?.workingPattern.firstOrNull?.workingHour,
@@ -276,398 +273,189 @@ class _HCalenderSettingWidgetState extends State<HCalenderSettingWidget> {
                                                           MainAxisSize.max,
                                                       mainAxisAlignment:
                                                           MainAxisAlignment
-                                                              .spaceBetween,
+                                                              .start,
                                                       children: [
-                                                        Container(
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.4,
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        5.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              children: [
-                                                                Text(
-                                                                  'General Calendar ',
-                                                                  style: FlutterFlowTheme.of(
+                                                        Text(
+                                                          'General Calendar ',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelLarge
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelLarge
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .inter(
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .fontStyle,
-                                                                      ),
+                                                                      .fontStyle,
                                                                 ),
-                                                                Text(
-                                                                  '*',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelLarge
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .inter(
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .error,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                              ].divide(SizedBox(
-                                                                  width: 4.0)),
-                                                            ),
-                                                          ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .fontStyle,
+                                                              ),
                                                         ),
-                                                        Container(
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.4,
-                                                          decoration:
-                                                              BoxDecoration(),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        5.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                  'Calendar Type',
-                                                                  style: FlutterFlowTheme.of(
+                                                        Text(
+                                                          '*',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .labelLarge
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .labelLarge
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .inter(
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .fontStyle,
-                                                                      ),
+                                                                      .fontStyle,
                                                                 ),
-                                                                Text(
-                                                                  '*',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelLarge
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .inter(
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .labelLarge
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .error,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .labelLarge
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                              ].divide(SizedBox(
-                                                                  width: 4.0)),
-                                                            ),
-                                                          ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .error,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .fontStyle,
+                                                              ),
                                                         ),
                                                       ].divide(
                                                           SizedBox(width: 4.0)),
                                                     ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .spaceBetween,
-                                                      children: [
-                                                        FlutterFlowDropDown<
-                                                            CalendarType>(
-                                                          controller: _model
-                                                                  .generalCalendarTypeValueController ??=
-                                                              FormFieldController<
-                                                                  CalendarType>(
-                                                            _model.generalCalendarTypeValue ??=
-                                                                _model.calendar
-                                                                    ?.type,
-                                                          ),
-                                                          options: List<
-                                                                  CalendarType>.from(
-                                                              CalendarType
-                                                                  .values
-                                                                  .where((e) =>
-                                                                      (e ==
-                                                                          CalendarType
-                                                                              .General_EG) ||
-                                                                      (e ==
-                                                                          CalendarType
-                                                                              .General_US))
-                                                                  .toList()),
-                                                          optionLabels: [
-                                                            CalendarType
-                                                                .General_EG
-                                                                .name,
-                                                            CalendarType
-                                                                .General_US.name
-                                                          ],
-                                                          onChanged:
-                                                              (val) async {
-                                                            safeSetState(() =>
-                                                                _model.generalCalendarTypeValue =
-                                                                    val);
-                                                            _model.generaCalenda =
-                                                                await queryCalendarSettingsRecordOnce(
-                                                              queryBuilder:
-                                                                  (calendarSettingsRecord) =>
-                                                                      calendarSettingsRecord
-                                                                          .where(
-                                                                            'type',
-                                                                            isEqualTo:
-                                                                                _model.generalCalendarTypeValue?.serialize(),
-                                                                          )
-                                                                          .where(
-                                                                            'parent_calendar',
-                                                                            isEqualTo:
-                                                                                null,
-                                                                          ),
-                                                              singleRecord:
-                                                                  true,
-                                                            ).then((s) => s
-                                                                    .firstOrNull);
-                                                            _model.generalCalendar =
-                                                                _model
-                                                                    .generaCalenda;
-                                                            safeSetState(() {});
-
-                                                            safeSetState(() {});
-                                                          },
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.4,
-                                                          height: 48.0,
-                                                          textStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .inter(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                          hintText:
-                                                              'Select General calendar type',
-                                                          icon: Icon(
-                                                            Icons
-                                                                .keyboard_arrow_down_rounded,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                          fillColor: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          elevation: 0.0,
-                                                          borderColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                          borderWidth: 1.0,
-                                                          borderRadius: 12.0,
-                                                          margin:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      15.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
-                                                          hidesUnderline: true,
-                                                          isOverButton: true,
-                                                          isSearchable: false,
-                                                          isMultiSelect: false,
-                                                        ),
-                                                        FlutterFlowDropDown<
-                                                            CalendarType>(
-                                                          controller: _model
-                                                                  .calendarTypeValueController ??=
-                                                              FormFieldController<
-                                                                  CalendarType>(
-                                                            _model.calendarTypeValue ??=
-                                                                null,
-                                                          ),
-                                                          options: List<
-                                                                  CalendarType>.from(
-                                                              CalendarType
-                                                                  .values
-                                                                  .where((e) =>
-                                                                      (e ==
-                                                                          CalendarType
-                                                                              .Resource) ||
-                                                                      (e ==
-                                                                          CalendarType
-                                                                              .Project))
-                                                                  .toList()),
-                                                          optionLabels: CalendarType
-                                                              .values
+                                                    FlutterFlowDropDown<
+                                                        CalendarType>(
+                                                      controller: _model
+                                                              .generalCalendarTypeValueController ??=
+                                                          FormFieldController<
+                                                              CalendarType>(
+                                                        _model.generalCalendarTypeValue ??=
+                                                            _model
+                                                                .calendar?.type,
+                                                      ),
+                                                      options: List<
+                                                              CalendarType>.from(
+                                                          CalendarType.values
                                                               .where((e) =>
                                                                   (e ==
                                                                       CalendarType
-                                                                          .Resource) ||
+                                                                          .General_EG) ||
                                                                   (e ==
                                                                       CalendarType
-                                                                          .Project))
-                                                              .toList()
-                                                              .map(
-                                                                  (e) => e.name)
-                                                              .toList(),
-                                                          onChanged: (val) =>
-                                                              safeSetState(() =>
-                                                                  _model.calendarTypeValue =
-                                                                      val),
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  0.4,
-                                                          height: 48.0,
-                                                          textStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .inter(
-                                                                      fontWeight: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontWeight,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                          hintText:
-                                                              'Select calendar type',
-                                                          icon: Icon(
-                                                            Icons
-                                                                .keyboard_arrow_down_rounded,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                          fillColor: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryBackground,
-                                                          elevation: 0.0,
-                                                          borderColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                          borderWidth: 1.0,
-                                                          borderRadius: 12.0,
-                                                          margin:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      15.0,
-                                                                      0.0,
-                                                                      15.0,
-                                                                      0.0),
-                                                          hidesUnderline: true,
-                                                          isOverButton: true,
-                                                          isSearchable: false,
-                                                          isMultiSelect: false,
-                                                        ),
+                                                                          .General_US))
+                                                              .toList()),
+                                                      optionLabels: [
+                                                        CalendarType
+                                                            .General_EG.name,
+                                                        CalendarType
+                                                            .General_US.name
                                                       ],
+                                                      onChanged: (val) async {
+                                                        safeSetState(() => _model
+                                                                .generalCalendarTypeValue =
+                                                            val);
+                                                        _model.generaCalenda =
+                                                            await queryCalendarSettingsRecordOnce(
+                                                          queryBuilder:
+                                                              (calendarSettingsRecord) =>
+                                                                  calendarSettingsRecord
+                                                                      .where(
+                                                                        'type',
+                                                                        isEqualTo: _model
+                                                                            .generalCalendarTypeValue
+                                                                            ?.serialize(),
+                                                                      )
+                                                                      .where(
+                                                                        'parent_calendar',
+                                                                        isEqualTo:
+                                                                            null,
+                                                                      ),
+                                                          singleRecord: true,
+                                                        ).then((s) =>
+                                                                s.firstOrNull);
+                                                        _model.generalCalendar =
+                                                            _model
+                                                                .generaCalenda;
+                                                        safeSetState(() {});
+
+                                                        safeSetState(() {});
+                                                      },
+                                                      height: 48.0,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                      hintText:
+                                                          'Select General calendar type',
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                      fillColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryBackground,
+                                                      elevation: 0.0,
+                                                      borderColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .alternate,
+                                                      borderWidth: 1.0,
+                                                      borderRadius: 12.0,
+                                                      margin:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  15.0,
+                                                                  0.0,
+                                                                  15.0,
+                                                                  0.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: true,
+                                                      isSearchable: false,
+                                                      isMultiSelect: false,
                                                     ),
                                                   ].divide(
                                                       SizedBox(height: 8.0)),
@@ -2389,8 +2177,8 @@ class _HCalenderSettingWidgetState extends State<HCalenderSettingWidget> {
                                                       .calendar!.reference
                                                       .update({
                                                     ...createCalendarSettingsRecordData(
-                                                      type: _model
-                                                          .calendarTypeValue,
+                                                      type:
+                                                          CalendarType.Resource,
                                                       parentCalendar: _model
                                                           .generaCalenda
                                                           ?.reference,
